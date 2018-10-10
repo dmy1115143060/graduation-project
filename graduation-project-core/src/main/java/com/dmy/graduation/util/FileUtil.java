@@ -30,7 +30,7 @@ public class FileUtil {
      */
     private static final Map<String, Integer> appVisitCountMap = new HashMap<>(INITIAL_CAPACITY);
 
-    private static long total = 0L;
+    private static AtomicLong totalDataCount = new AtomicLong(0L);
 
     /**
      * 线程池
@@ -95,14 +95,17 @@ public class FileUtil {
                         try {
                             bufferedReader = new BufferedReader(new FileReader(file));
                             String line = null;
+                            HashMap<String, Integer> hashMap = new HashMap<>(INITIAL_CAPACITY);
                             while ((line = bufferedReader.readLine()) != null) {
+                                totalDataCount.incrementAndGet();
                                 String[] splits = line.split("\\|");
                                 String appSymbol = splits[16];
                                 String appName = appSymbolMap.get(appSymbol);
-                                synchronized (appVisitCountMap) {
-                                    appVisitCountMap.put(appName, appVisitCountMap.getOrDefault(appName, 0) + 1);
-                                    total++;
-                                }
+                                hashMap.put(appName, hashMap.getOrDefault(appName, 0) + 1);
+                            }
+                            synchronized (appVisitCountMap) {
+                                hashMap.forEach((appName, visitCount) ->
+                                    appVisitCountMap.put(appName, appVisitCountMap.getOrDefault(appName, 0) + visitCount));
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -122,17 +125,20 @@ public class FileUtil {
                 // 等待所有子线程完成
                 countDownLatch.await();
                 System.out.println("子线程处理完成！");
-                System.out.println("total: " + total);
                 threadPoolExecutor.shutdown();
 
                 // 处理结果写入文件当中
                 BufferedWriter bufferedWriter = new BufferedWriter(
                         new FileWriter(RESOURCE_FILE_PATH + "//AppVisitCount.txt"));
+                long dealedDataCount = 0L;
                 for (Map.Entry<String, Integer> entry : appVisitCountMap.entrySet()) {
+                    dealedDataCount += entry.getValue();
                     bufferedWriter.write(entry.getKey() + ":" + entry.getValue());
                     bufferedWriter.newLine();
                     bufferedWriter.flush();
                 }
+                System.out.println("totalCount: " + totalDataCount.get());
+                System.out.println("dataCount: " + dealedDataCount);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -140,6 +146,6 @@ public class FileUtil {
     }
 
     public static void main(String[] args) {
-        getAppVisitCount("F:\\学习资料\\我的资源\\电信数据\\0415");
+        getAppVisitCount("F:\\学习资料\\我的资源\\电信数据\\0418");
     }
 }
