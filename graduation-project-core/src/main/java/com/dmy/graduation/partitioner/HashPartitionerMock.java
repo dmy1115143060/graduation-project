@@ -1,5 +1,7 @@
 package com.dmy.graduation.partitioner;
 
+import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +11,7 @@ import java.util.Map;
 /**
  * Created by DMY on 2018/10/10 15:25
  */
+@Service
 public class HashPartitionerMock {
 
     /**

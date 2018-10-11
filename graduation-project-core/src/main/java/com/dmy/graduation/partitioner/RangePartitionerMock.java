@@ -1,10 +1,13 @@
 package com.dmy.graduation.partitioner;
 
+import org.springframework.stereotype.Service;
+
 import java.util.*;
 
 /**
  * Created by DMY on 2018/10/10 15:26
  */
+@Service
 public class RangePartitionerMock {
 
     /**
@@ -28,13 +31,32 @@ public class RangePartitionerMock {
      */
     private Map<Integer, List<String>> partitionKeyMap;
 
-    public RangePartitionerMock(int partitionNum, Map<String, Integer> keyCountMap,
-                                Map<Integer, List<String>> partitionKeyMap) {
+    /**
+     * 二元组：<key，key的权重>
+     */
+    class Tuple {
+        String key;
+        double weight;
+    }
+
+    /**
+     * 三元组：<partition标识，partition中包含的键值对个数，抽样的Key>
+     */
+    class Triple {
+        int partitionId;
+        int partitionSize;
+        List<String> sampleList;
+    }
+
+    public RangePartitionerMock(int partitionNum, Map<String, Integer> keyCountMap, Map<Integer, List<String>> partitionKeyMap) {
         this.partitionNum = partitionNum;
         this.keyCountMap = keyCountMap;
         this.partitionKeyMap = partitionKeyMap;
     }
 
+    /**
+     * 计算不均衡度
+     */
     public double calculateBalanceRate() {
         assert (partitionNum > 0 && keyCountMap != null);
 
@@ -45,20 +67,60 @@ public class RangePartitionerMock {
         int sampleSizePerPartition = (int) Math.ceil(3.0 * sampleSize / partitionKeyMap.keySet().size());
 
         // 遍历每个partition中的数据进行抽样
-        List<Triple> partitionSampleData = new ArrayList<>();
+        List<Triple> sketched = new ArrayList<>();
         partitionKeyMap.forEach((partitionId, keyList) -> {
             Triple triple = sketch(partitionId, keyList, sampleSizePerPartition);
-            partitionSampleData.add(triple);
+            sketched.add(triple);
         });
 
+        // 计算采样比例
+        double fraction = Math.min(sampleSize / Math.max(totalCount, 1), 1.0);
+
+        // 由于已经知道每个分区中的数据量和采样比例，扫描分区计算按照该采样比例采样出来的数据
+        // 是否大于sampleSizePerPartition。若大于则认为该分区是倾斜的，需要按照采样比例重新进行采样
+        List<Tuple> candidates = new ArrayList<>();
+        Set<Triple> imbalancedPartitions = new HashSet<>();
+        sketched.forEach(partitionSampleInfo -> {
+            if (fraction * partitionSampleInfo.partitionSize > sampleSizePerPartition) {
+                imbalancedPartitions.add(partitionSampleInfo);
+            } else {
+                double weight = (double) partitionSampleInfo.partitionSize / (double) partitionSampleInfo.sampleList.size();
+                partitionSampleInfo.sampleList.forEach(key -> {
+                    Tuple tuple = new Tuple();
+                    tuple.key = key;
+                    tuple.weight = weight;
+                    candidates.add(tuple);
+                });
+            }
+        });
+
+        // 对非均衡的partition重新抽样
+        List<Triple> reSketched = new ArrayList<>();
+        if (!imbalancedPartitions.isEmpty()) {
+            imbalancedPartitions.forEach(partitionSampleInfo -> {
+                Triple triple = sketch(partitionSampleInfo.partitionId, partitionKeyMap.get(partitionSampleInfo.partitionId),
+                        (int) (partitionSampleInfo.partitionSize * fraction));
+                reSketched.add(triple);
+            });
+        }
+        reSketched.forEach(partitionSampleInfo -> {
+            double weight = (1.0) / fraction;
+            partitionSampleInfo.sampleList.forEach(key -> {
+                Tuple tuple = new Tuple();
+                tuple.key = key;
+                tuple.weight = weight;
+                candidates.add(tuple);
+            });
+        });
         return 0d;
     }
 
     /**
      * 采样数据
-     * @param partitionId partition标识
+     *
+     * @param partitionId   partition标识
      * @param partitionKeys 该partition中包含的key集合
-     * @param sampleCount 该partition采样的数据量
+     * @param sampleCount   该partition采样的数据量
      * @return partition采样结果
      */
     public Triple sketch(int partitionId, List<String> partitionKeys, int sampleCount) {
@@ -76,6 +138,7 @@ public class RangePartitionerMock {
                 }
             }
         }
+        totalCount += partitionSize;
 
         // 打乱数据
         Collections.shuffle(keyList);
@@ -84,17 +147,16 @@ public class RangePartitionerMock {
         List<String> sampleKeyList = reservoirSample(keyList, sampleCount);
 
         Triple triple = new Triple();
-        triple.setPartitionId(partitionId);
-        triple.setPartitionId(partitionId);
-        triple.setPartitionSize(partitionSize);
-        triple.setSampleList(sampleKeyList);
-
+        triple.partitionId = partitionId;
+        triple.partitionSize = partitionSize;
+        triple.sampleList = sampleKeyList;
         return triple;
     }
 
     /**
      * 水塘抽样
-     * @param keyList 待采样数据集合
+     *
+     * @param keyList     待采样数据集合
      * @param sampleCount 采样的数据量
      * @return 采样结果
      */
@@ -115,27 +177,62 @@ public class RangePartitionerMock {
     }
 
     /**
-     * 三元组：<partition标识，partition中包含的键值对个数，抽样的Key>
+     * 确定每个Partition中Key的范围
+     *
+     * @return
      */
-    class Triple {
-        int partitionId;
-        int partitionSize;
-        List<String> sampleList;
+    private Map<Integer, List<String>> determineBounds(List<Tuple> candidates) {
+        // 先对采样数据按照Key进行排序
+        Collections.sort(candidates, (tuple1, tuple2) -> {
+            String key1 = tuple1.key;
+            String key2 = tuple2.key;
+            return key1.compareTo(key2);
+        });
 
-        Triple() {
+        // 计算所有采样Key的权重和以及每个Partition的平均权重值
+        double totalWeight = candidates.stream().map(tuple -> tuple.weight).reduce(0d, (acc, value) -> acc + value);
+        double avgPartitionWeight = totalWeight / partitionNum;
 
+        // 边界划分,每次将采样的key尝试放入第i个partition中（0 <= i <= partitionNum）
+        // 放入的条件是当前partition中Key的权重和小于partition的平均权重值
+        Map<Integer, List<String>> bounds = new HashMap<>();
+        Map<Integer, Double> partitionWeightMap = new HashMap<>();
+        int i = 0;
+        int j = 0;
+        int size = candidates.size();
+        while (i < partitionNum && j < size) {
+            if (!bounds.containsKey(i)) {
+                bounds.put(i, new ArrayList<>());
+            }
+            String key = candidates.get(j).key;
+            double weight = candidates.get(j).weight;
+            if (partitionWeightMap.getOrDefault(i, 0d).compareTo(avgPartitionWeight) < 0) {
+                bounds.get(i).add(key);
+                partitionWeightMap.put(i, partitionWeightMap.getOrDefault(i, 0d) + weight);
+                j++;
+            } else {
+                i++;
+            }
         }
+        return bounds;
+    }
 
-        void setPartitionId(int partitionId) {
-            this.partitionId = partitionId;
+    /**
+     * 获得key所在的partition编号
+     */
+    private int getPartition(String key, Map<Integer, List<String>> bounds) {
+        for (int i = 0; i < partitionNum; i++) {
+            List<String> keys = bounds.get(i);
+            if (keys != null && !keys.isEmpty()) {
+                String maxKey = keys.get(keys.size() - 1);
+                String minKey = keys.get(0);
+                if (minKey.compareTo(key) <= 0 && maxKey.compareTo(key) >= 0) {
+                    return i;
+                }
+            } else {
+                return i;
+            }
         }
-
-        void setPartitionSize(int partitionSize) {
-            this.partitionSize = partitionSize;
-        }
-
-        void setSampleList(List<String> sampleList) {
-            this.sampleList = sampleList;
-        }
+        return 0;
     }
 }
