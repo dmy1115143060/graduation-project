@@ -29,6 +29,14 @@ public class HashPartitionerMock {
         this.keyCountMap = keyCountMap;
     }
 
+    public void setPartitionNum(int partitionNum) {
+        this.partitionNum = partitionNum;
+    }
+
+    public void setKeyCountMap(Map<String, Integer> keyCountMap) {
+        this.keyCountMap = keyCountMap;
+    }
+
     public double calculateBalanceRate() {
         assert (partitionNum > 0 && keyCountMap != null);
 
