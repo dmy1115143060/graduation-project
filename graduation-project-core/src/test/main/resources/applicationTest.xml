@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean name="partitioner" class="com.dmy.graduation.partitioner.Partitioner"/>
+    <bean name="fileUtil" class="com.dmy.graduation.util.FileUtil"/>
+    <bean name="hashPartitionerMock" class="com.dmy.graduation.partitioner.HashPartitionerMock"/>
+    <bean name="rangePartitionerMock" class="com.dmy.graduation.partitioner.RangePartitionerMock"/>
+    <bean name="dsPartitionerMock" class="com.dmy.graduation.partitioner.DSPartitionerMock"/>
 
 </beans>

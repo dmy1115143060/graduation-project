@@ -24,6 +24,20 @@ public class HashPartitionerMock {
      */
     private Map<String, Integer> keyCountMap;
 
+    /**
+     * key: partitionId  value: 当前partition包含的key集合
+     */
+    private Map<Integer, List<String>> partitionKeyMap;
+
+    /**
+     * key: partitionId  value: 当前partition包含的键值对个数
+     */
+    private Map<Integer, Integer> partitionPairCountMap;
+
+    public HashPartitionerMock() {
+
+    }
+
     public HashPartitionerMock(int partitionNum, Map<String, Integer> keyCountMap) {
         this.partitionNum = partitionNum;
         this.keyCountMap = keyCountMap;
@@ -37,19 +51,26 @@ public class HashPartitionerMock {
         this.keyCountMap = keyCountMap;
     }
 
+    public Map<Integer, List<String>> getPartitionKeyMap() {
+        return partitionKeyMap;
+    }
+
+    public Map<Integer, Integer> getPartitionPairCountMap() {
+        return partitionPairCountMap;
+    }
+
     public double calculateBalanceRate() {
         assert (partitionNum > 0 && keyCountMap != null);
 
-        // 分别记录一个partition中包含哪些key以及每个partition当前包含的键值对个数
-        Map<Integer, List<String>> partitionKeyMap = new HashMap<>();
-        Map<Integer, Integer> partitionPairCountMap = new HashMap<>();
+        partitionKeyMap = new HashMap<>(partitionNum);
+        partitionPairCountMap = new HashMap<>(partitionNum);
 
         // 总的键值对数目
         int totalCount = 0;
         for (Map.Entry<String, Integer> entry : keyCountMap.entrySet()) {
             totalCount += entry.getValue();
             // 计算当前key应当放在哪一个partition中
-            int partitionId = entry.getKey().hashCode() % partitionNum;
+            int partitionId = getPartitionId(entry.getKey(), partitionNum);
             if (!partitionKeyMap.containsKey(partitionId)) {
                 partitionKeyMap.put(partitionId, new ArrayList<>());
             }
@@ -67,5 +88,10 @@ public class HashPartitionerMock {
         double partitionBalanceRate = Math.sqrt(totalDeviation / (double) (partitionNum - 1)) / avgPartitionCount;
         BigDecimal bigDecimal = new BigDecimal(partitionBalanceRate);
         return bigDecimal.setScale(5, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
+    private int getPartitionId(String key, int partitionNum) {
+        int partitionId = key.hashCode() % partitionNum;
+        return partitionId < 0 ? partitionId + partitionNum : partitionId;
     }
 }

@@ -23,25 +23,33 @@ public class FileUtil {
     /**
      * key: app标识符   value: app名称
      */
-    private static final Map<String, String> appSymbolMap = new HashMap<>(INITIAL_CAPACITY);
+    private Map<String, String> appSymbolMap = new HashMap<>(INITIAL_CAPACITY);
 
     /**
      * key: app名称     value: app被使用次数
      */
-    private static final Map<String, Integer> appVisitCountMap = new HashMap<>(INITIAL_CAPACITY);
+    private Map<String, Integer> appVisitCountMap = new HashMap<>(INITIAL_CAPACITY);
 
-    private static AtomicLong totalDataCount = new AtomicLong(0L);
+    private AtomicLong totalDataCount = new AtomicLong(0L);
+
+    public Map<String, Integer> getAppVisitCountMap() {
+        return appVisitCountMap;
+    }
+
+    public Map<String, String> getAppSymbolMap() {
+        return appSymbolMap;
+    }
 
     /**
      * 线程池
      */
-    private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(4, 6,
+    private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(4, 6,
             5, TimeUnit.SECONDS, new LinkedBlockingDeque<>(), new NamedThreadFactory("Load-File-Pool"));
 
-    private static void initAppVisitCount() {
+    public void initAppVisitCount() {
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-                    FileUtil.class.getClassLoader().getResourceAsStream("files/AppVisitCount.txt")));
+                    FileUtil.class.getClassLoader().getResourceAsStream("files/AppVisitCount2.txt")));
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] splits = line.split(":");
@@ -55,7 +63,7 @@ public class FileUtil {
     /**
      * 从excel文件中获取App名称与其标签映射关系
      */
-    public static void initAppSymbol() {
+    public void initAppSymbol() {
         try {
             Workbook workbook = WorkbookFactory.create(FileUtil.class.getClassLoader().getResourceAsStream("files/AppSymbol.xls"));
             Sheet sheet = workbook.getSheetAt(0);
@@ -74,7 +82,7 @@ public class FileUtil {
         }
     }
 
-    public static void getAppVisitCount(String foldPath) {
+    public void getAppVisitCount(String foldPath) {
         initAppSymbol();
         initAppVisitCount();
         System.out.println("appSymbolMap: " + appSymbolMap.size());
@@ -146,6 +154,6 @@ public class FileUtil {
     }
 
     public static void main(String[] args) {
-        getAppVisitCount("F:\\学习资料\\我的资源\\电信数据\\0418");
+        new FileUtil().getAppVisitCount("F:\\学习资料\\我的资源\\电信数据\\0418");
     }
 }

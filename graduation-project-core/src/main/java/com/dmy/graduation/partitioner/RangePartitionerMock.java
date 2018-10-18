@@ -1,14 +1,11 @@
 package com.dmy.graduation.partitioner;
 
-import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.util.*;
 
 /**
  * Created by DMY on 2018/10/10 15:26
  */
-@Service
 public class RangePartitionerMock {
 
     /**
@@ -33,6 +30,12 @@ public class RangePartitionerMock {
     private Map<Integer, List<String>> originalPartitionKeyMap;
 
     /**
+     * 对数据进行重新数据分区后的结果
+     */
+    private Map<Integer, List<String>> rePartitionKeyMap;
+    private Map<Integer, Integer> rePartitionSizeMap;
+
+    /**
      * 二元组：<key，key的权重>
      */
     class Tuple {
@@ -49,10 +52,30 @@ public class RangePartitionerMock {
         List<String> sampleList;
     }
 
+    public RangePartitionerMock() {
+
+    }
+
     public RangePartitionerMock(int partitionNum, Map<String, Integer> keyCountMap, Map<Integer, List<String>> originalPartitionKeyMap) {
         this.partitionNum = partitionNum;
         this.keyCountMap = keyCountMap;
         this.originalPartitionKeyMap = originalPartitionKeyMap;
+    }
+
+    public void setPartitionNum(int partitionNum) {
+        this.partitionNum = partitionNum;
+    }
+
+    public void setOriginalPartitionKeyMap(Map<Integer, List<String>> originalPartitionKeyMap) {
+        this.originalPartitionKeyMap = originalPartitionKeyMap;
+    }
+
+    public Map<Integer, List<String>> getRePartitionKeyMap() {
+        return rePartitionKeyMap;
+    }
+
+    public Map<Integer, Integer> getRePartitionSizeMap() {
+        return rePartitionSizeMap;
     }
 
     /**
@@ -85,8 +108,8 @@ public class RangePartitionerMock {
         Map<Integer, List<String>> bounds = determineBounds(candidates);
 
         // 对原有的数据进行重新分区并计算每个分区包含的键值对个数
-        Map<Integer, List<String>> rePartitionKeyMap = rePartitionKeyMap(bounds);
-        Map<Integer, Integer> rePartitionSizeMap = new HashMap<>();
+        rePartitionKeyMap = rePartition(bounds);
+        rePartitionSizeMap = new HashMap<>(partitionNum);
         rePartitionKeyMap.forEach((partitionId, keyList) ->
                 keyList.forEach(key ->
                         rePartitionSizeMap.put(partitionId, rePartitionSizeMap.getOrDefault(partitionId, 0) + keyCountMap.getOrDefault(key, 0))));
@@ -111,7 +134,7 @@ public class RangePartitionerMock {
      * @param sampleCount   该partition采样的数据量
      * @return partition采样结果
      */
-    public Triple sketch(int partitionId, List<String> partitionKeys, int sampleCount) {
+    private Triple sketch(int partitionId, List<String> partitionKeys, int sampleCount) {
 
         // 由于已经知道每个partition中包含的key，因此进行模拟，即先将一个partition
         // 中的key按照出现次数加入到集合中，然后进行数据混洗，最终再进行水塘抽样
@@ -262,7 +285,7 @@ public class RangePartitionerMock {
      * @param bounds 各分区边界
      * @return 重新分区后的结果
      */
-    private Map<Integer, List<String>> rePartitionKeyMap(Map<Integer, List<String>> bounds) {
+    private Map<Integer, List<String>> rePartition(Map<Integer, List<String>> bounds) {
         Map<Integer, List<String>> curPartitionKeyMap = new HashMap<>();
         originalPartitionKeyMap.forEach((id, keyList) -> {
             keyList.forEach(key -> {
