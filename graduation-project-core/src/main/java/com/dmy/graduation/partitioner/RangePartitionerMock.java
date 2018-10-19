@@ -53,7 +53,6 @@ public class RangePartitionerMock {
     }
 
     public RangePartitionerMock() {
-
     }
 
     public RangePartitionerMock(int partitionNum, Map<String, Integer> keyCountMap, Map<Integer, List<String>> originalPartitionKeyMap) {
@@ -68,6 +67,10 @@ public class RangePartitionerMock {
 
     public void setOriginalPartitionKeyMap(Map<Integer, List<String>> originalPartitionKeyMap) {
         this.originalPartitionKeyMap = originalPartitionKeyMap;
+    }
+
+    public void setKeyCountMap(Map<String, Integer> keyCountMap) {
+        this.keyCountMap = keyCountMap;
     }
 
     public Map<Integer, List<String>> getRePartitionKeyMap() {
@@ -117,8 +120,8 @@ public class RangePartitionerMock {
         // 计算不均衡度
         double avgPartitionCount = (double) totalCount / (double) partitionNum;
         double totalDeviation = 0.0;
-        for (Map.Entry<Integer, Integer> entry : rePartitionSizeMap.entrySet()) {
-            double deviation = avgPartitionCount - entry.getValue();
+        for (int i = 0; i < partitionNum; i++) {
+            double deviation = avgPartitionCount - rePartitionSizeMap.getOrDefault(i, 0);
             totalDeviation += Math.pow(deviation, 2);
         }
         double partitionBalanceRate = Math.sqrt(totalDeviation / (double) (partitionNum - 1)) / avgPartitionCount;
@@ -173,6 +176,10 @@ public class RangePartitionerMock {
      * @return 采样结果
      */
     private List<String> reservoirSample(List<String> keyList, int sampleCount) {
+
+        if (keyList.size() <= sampleCount) {
+            return keyList;
+        }
         String[] sampleKeys = new String[sampleCount];
         Random random = new Random();
         int k = 0;
@@ -240,12 +247,21 @@ public class RangePartitionerMock {
 
     /**
      * 确定每个Partition中Key的范围
-     *
-     * @return
      */
     private Map<Integer, List<String>> determineBounds(List<Tuple> candidates) {
-        // 先对采样数据按照Key进行排序
-        Collections.sort(candidates, (tuple1, tuple2) -> {
+
+        // 对candidates中的相同key进行weight合并，最终按照key进行排序
+        Map<String, Tuple> map = new HashMap<>();
+        candidates.forEach(tuple -> {
+            if (!map.containsKey(tuple.key)) {
+                map.put(tuple.key, tuple);
+            } else {
+                tuple.weight += map.get(tuple.key).weight;
+                map.put(tuple.key, tuple);
+            }
+        });
+        candidates = new ArrayList<>(map.values());
+        candidates.sort((tuple1, tuple2) -> {
             String key1 = tuple1.key;
             String key2 = tuple2.key;
             return key1.compareTo(key2);

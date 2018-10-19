@@ -29,7 +29,7 @@ public class DSPartitionerMock {
     /**
      * key: partitionId  value: 当前partition包含的键值对个数
      */
-    private Map<Integer, Integer> partitionPairCountMap;
+    private Map<Integer, Integer> partitionSizeMap;
 
     public DSPartitionerMock() {
 
@@ -52,8 +52,8 @@ public class DSPartitionerMock {
         return partitionKeyMap;
     }
 
-    public Map<Integer, Integer> getPartitionPairCountMap() {
-        return partitionPairCountMap;
+    public Map<Integer, Integer> getPartitionSzieMap() {
+        return partitionSizeMap;
     }
 
     public double calculateBalanceRate() {
@@ -61,7 +61,7 @@ public class DSPartitionerMock {
         assert (partitionNum > 0 && keyCountMap != null);
 
         partitionKeyMap = new HashMap<>(partitionNum);
-        partitionPairCountMap = new HashMap<>(partitionNum);
+        partitionSizeMap = new HashMap<>(partitionNum);
         List<String> sortedkeyList = new ArrayList<>(keyCountMap.keySet());
 
         // 对当前的key按照包含的键值对数目从大到小排序
@@ -74,8 +74,8 @@ public class DSPartitionerMock {
         // 对各Reducer构造一个小顶堆
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(
                 (partitionId1, partitionId2) -> {
-                    int partitionPairCount1 = partitionPairCountMap.getOrDefault(partitionId1, 0);
-                    int partitionPairCount2 = partitionPairCountMap.getOrDefault(partitionId2, 0);
+                    int partitionPairCount1 = partitionSizeMap.getOrDefault(partitionId1, 0);
+                    int partitionPairCount2 = partitionSizeMap.getOrDefault(partitionId2, 0);
                     return partitionPairCount1 - partitionPairCount2;
                 });
 
@@ -90,7 +90,7 @@ public class DSPartitionerMock {
             int keyCount = keyCountMap.get(key);
             totalCount += keyCount;
             int reducerID = priorityQueue.poll();
-            partitionPairCountMap.put(reducerID, partitionPairCountMap.getOrDefault(reducerID, 0) + keyCount);
+            partitionSizeMap.put(reducerID, partitionSizeMap.getOrDefault(reducerID, 0) + keyCount);
             priorityQueue.add(reducerID);
             if (!partitionKeyMap.containsKey(reducerID)) {
                 partitionKeyMap.put(reducerID, new ArrayList<>());
@@ -99,15 +99,13 @@ public class DSPartitionerMock {
         }
 
         // 计算partition不均衡度
-        double averagePairCount = (double) totalCount / (double) partitionNum;
+        double avgPartitionCount = (double) totalCount / (double) partitionNum;
         double totalDeviation = 0;
-        for (int reducerID : partitionPairCountMap.keySet()) {
-            //System.out.println("(" + reducerID + "," + keyCountInReducers.get(reducerID) + ")");
-            int reducerKeyCount = partitionPairCountMap.get(reducerID);
-            double deviation = averagePairCount - reducerKeyCount;
+        for (int i = 0; i < partitionNum; i++) {
+            double deviation = avgPartitionCount - partitionSizeMap.getOrDefault(i, 0);
             totalDeviation += Math.pow(deviation, 2);
         }
-        double reducerBalanceRate = (Math.sqrt(totalDeviation / (double) (partitionNum - 1))) / averagePairCount;
+        double reducerBalanceRate = (Math.sqrt(totalDeviation / (double) (partitionNum - 1))) / avgPartitionCount;
         BigDecimal bd = new BigDecimal(reducerBalanceRate);
         return bd.setScale(5, BigDecimal.ROUND_HALF_UP).doubleValue();
     }

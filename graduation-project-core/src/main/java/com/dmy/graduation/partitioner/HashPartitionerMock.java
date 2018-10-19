@@ -32,7 +32,7 @@ public class HashPartitionerMock {
     /**
      * key: partitionId  value: 当前partition包含的键值对个数
      */
-    private Map<Integer, Integer> partitionPairCountMap;
+    private Map<Integer, Integer> partitionSzieMap;
 
     public HashPartitionerMock() {
 
@@ -55,15 +55,15 @@ public class HashPartitionerMock {
         return partitionKeyMap;
     }
 
-    public Map<Integer, Integer> getPartitionPairCountMap() {
-        return partitionPairCountMap;
+    public Map<Integer, Integer> getPartitionSizeMap() {
+        return partitionSzieMap;
     }
 
     public double calculateBalanceRate() {
         assert (partitionNum > 0 && keyCountMap != null);
 
         partitionKeyMap = new HashMap<>(partitionNum);
-        partitionPairCountMap = new HashMap<>(partitionNum);
+        partitionSzieMap = new HashMap<>(partitionNum);
 
         // 总的键值对数目
         int totalCount = 0;
@@ -75,14 +75,14 @@ public class HashPartitionerMock {
                 partitionKeyMap.put(partitionId, new ArrayList<>());
             }
             partitionKeyMap.get(partitionId).add(entry.getKey());
-            partitionPairCountMap.put(partitionId, partitionPairCountMap.getOrDefault(partitionId, 0) + entry.getValue());
+            partitionSzieMap.put(partitionId, partitionSzieMap.getOrDefault(partitionId, 0) + entry.getValue());
         }
 
         // 计算不平衡度
         double avgPartitionCount = (double) totalCount / (double) partitionNum;
         double totalDeviation = 0.0;
-        for (Map.Entry<Integer, Integer> entry : partitionPairCountMap.entrySet()) {
-            double deviation = avgPartitionCount - entry.getValue();
+        for (int i = 0; i < partitionNum; i++) {
+            double deviation = avgPartitionCount - partitionSzieMap.getOrDefault(i, 0);
             totalDeviation += Math.pow(deviation, 2);
         }
         double partitionBalanceRate = Math.sqrt(totalDeviation / (double) (partitionNum - 1)) / avgPartitionCount;

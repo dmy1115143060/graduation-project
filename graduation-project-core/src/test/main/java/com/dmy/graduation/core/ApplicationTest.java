@@ -46,6 +46,11 @@ public class ApplicationTest {
     }
 
     @Test
+    public void testFileUtil() {
+        fileUtil.generateAppVisitCount();
+    }
+
+    @Test
     public void testHashPartitioner() {
         hashPartitionerMock.setPartitionNum(200);
         hashPartitionerMock.setKeyCountMap(appVisitCountMap);
@@ -53,7 +58,7 @@ public class ApplicationTest {
         int[] countArray = new int[2];
         countArray[0] = Integer.MIN_VALUE;
         countArray[1] = Integer.MAX_VALUE;
-        hashPartitionerMock.getPartitionPairCountMap().forEach((partitionId, count) -> {
+        hashPartitionerMock.getPartitionSizeMap().forEach((partitionId, count) -> {
             if (count > countArray[0]) {
                 countArray[0] = count;
             }
@@ -66,27 +71,35 @@ public class ApplicationTest {
     }
 
     @Test
-    public void testDSPartitioner() {
-        dsPartitionerMock.setPartitionNum(80);
-        dsPartitionerMock.setKeyCountMap(appVisitCountMap);
-        System.out.println(dsPartitionerMock.calculateBalanceRate());
-        dsPartitionerMock.getPartitionPairCountMap().forEach((partitionId, count) ->
-                System.out.println(partitionId + ": " + count + " " + dsPartitionerMock.getPartitionKeyMap().get(partitionId)));
-    }
-
     public void testRangePartitioner() {
         // 先利用哈希分区来获取最初的数据分区方式
-        hashPartitionerMock.setPartitionNum(30);
+        int partitionNum = 30;
+        hashPartitionerMock.setPartitionNum(partitionNum);
         hashPartitionerMock.setKeyCountMap(appVisitCountMap);
         hashPartitionerMock.calculateBalanceRate();
 
         Map<Integer, List<String>> originalPartitionKeyMap = hashPartitionerMock.getPartitionKeyMap();
+        rangePartitionerMock.setPartitionNum(partitionNum);
+        rangePartitionerMock.setKeyCountMap(appVisitCountMap);
+        rangePartitionerMock.setOriginalPartitionKeyMap(originalPartitionKeyMap);
+        System.out.println("不均衡度：" + rangePartitionerMock.calculateBalanceRate());
+        rangePartitionerMock.getRePartitionSizeMap().forEach((partitionId, size) ->
+                System.out.println("partitionId: " + partitionId + " size: " + size + " "
+                        + rangePartitionerMock.getRePartitionKeyMap().get(partitionId)));
+    }
 
+    @Test
+    public void testDSPartitioner() {
+        dsPartitionerMock.setPartitionNum(80);
+        dsPartitionerMock.setKeyCountMap(appVisitCountMap);
+        System.out.println(dsPartitionerMock.calculateBalanceRate());
+        dsPartitionerMock.getPartitionSzieMap().forEach((partitionId, count) ->
+                System.out.println(partitionId + ": " + count + " " + dsPartitionerMock.getPartitionKeyMap().get(partitionId)));
     }
 
     @Test
     public void testPartitioner() {
-        for (int partitionNum = 30; partitionNum <= 200; partitionNum += 10) {
+        for (int partitionNum = 30; partitionNum <= 150; partitionNum += 10) {
             System.out.println("============================" + partitionNum + "==============================");
             System.out.println("HashPartitioner:");
             hashPartitionerMock.setPartitionNum(partitionNum);
@@ -96,18 +109,18 @@ public class ApplicationTest {
             countArray1[0] = Integer.MIN_VALUE;
             countArray1[1] = Integer.MAX_VALUE;
             countArray1[2] = 0;
-            hashPartitionerMock.getPartitionPairCountMap().forEach((partitionId, count) -> {
-                if (count == 0) {
+            for (int i = 0; i < partitionNum; i++) {
+                int size = hashPartitionerMock.getPartitionSizeMap().getOrDefault(i, 0);
+                if (size == 0) {
                     countArray1[2]++;
                 }
-                if (count > countArray1[0]) {
-                    countArray1[0] = count;
+                if (size > countArray1[0]) {
+                    countArray1[0] = size;
                 }
-                if (count < countArray1[1]) {
-                    countArray1[1] = count;
+                if (size < countArray1[1]) {
+                    countArray1[1] = size;
                 }
-                //System.out.println(partitionId + ": " + count + " " + hashPartitionerMock.getPartitionKeyMap().get(partitionId));
-            });
+            }
             System.out.println("极差：" + (countArray1[0] - countArray1[1]));
             System.out.println("空闲partition数目：" + countArray1[2]);
 
@@ -120,22 +133,48 @@ public class ApplicationTest {
             countArray2[0] = Integer.MIN_VALUE;
             countArray2[1] = Integer.MAX_VALUE;
             countArray2[2] = 0;
-            dsPartitionerMock.getPartitionPairCountMap().forEach((partitionId, count) -> {
-                if (count == 0) {
+            for (int i = 0; i < partitionNum; i++) {
+                int size = dsPartitionerMock.getPartitionSzieMap().getOrDefault(i, 0);
+                if (size == 0) {
                     countArray2[2]++;
                 }
-                if (count > countArray2[0]) {
-                    countArray2[0] = count;
+                if (size > countArray2[0]) {
+                    countArray2[0] = size;
                 }
-                if (count < countArray2[1]) {
-                    countArray2[1] = count;
+                if (size < countArray2[1]) {
+                    countArray2[1] = size;
                 }
-                //System.out.println(partitionId + ": " + count + " " + hashPartitionerMock.getPartitionKeyMap().get(partitionId));
-            });
+            }
             System.out.println("极差：" + (countArray2[0] - countArray2[1]));
             System.out.println("空闲partition数目：" + countArray2[2]);
 
-            System.out.println("==========================================================");
+            System.out.println();
+            System.out.println("RangePartitioner:");
+            Map<Integer, List<String>> originalPartitionKeyMap = hashPartitionerMock.getPartitionKeyMap();
+            rangePartitionerMock.setPartitionNum(partitionNum);
+            rangePartitionerMock.setKeyCountMap(appVisitCountMap);
+            rangePartitionerMock.setOriginalPartitionKeyMap(originalPartitionKeyMap);
+            System.out.println("不均衡度：" + rangePartitionerMock.calculateBalanceRate());
+            int[] countArray3 = new int[3];
+            countArray3[0] = Integer.MIN_VALUE;
+            countArray3[1] = Integer.MAX_VALUE;
+            countArray3[2] = 0;
+
+            for (int i = 0; i < partitionNum; i++) {
+                int size = rangePartitionerMock.getRePartitionSizeMap().getOrDefault(i, 0);
+                if (size == 0) {
+                    countArray3[2]++;
+                }
+                if (size > countArray3[0]) {
+                    countArray3[0] = size;
+                }
+                if (size < countArray3[1]) {
+                    countArray3[1] = size;
+                }
+            }
+            System.out.println("极差：" + (countArray3[0] - countArray3[1]));
+            System.out.println("空闲partition数目：" + countArray3[2]);
+            System.out.println();
         }
     }
 }

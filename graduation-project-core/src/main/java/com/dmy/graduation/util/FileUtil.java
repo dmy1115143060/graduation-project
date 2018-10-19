@@ -6,6 +6,7 @@ import org.apache.poi.ss.usermodel.*;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -29,6 +30,7 @@ public class FileUtil {
      * key: app名称     value: app被使用次数
      */
     private Map<String, Integer> appVisitCountMap = new HashMap<>(INITIAL_CAPACITY);
+    private Map<String, Integer> generatedAppVisitCountMap = new HashMap<>(INITIAL_CAPACITY);
 
     private AtomicLong totalDataCount = new AtomicLong(0L);
 
@@ -49,11 +51,41 @@ public class FileUtil {
     public void initAppVisitCount() {
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-                    FileUtil.class.getClassLoader().getResourceAsStream("files/AppVisitCount2.txt")));
+                    FileUtil.class.getClassLoader().getResourceAsStream("files/AppVisitCount3.txt")));
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] splits = line.split(":");
                 appVisitCountMap.put(splits[0], Integer.parseInt(splits[1]));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 产生均匀的数据量
+     */
+    public void generateAppVisitCount() {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                    FileUtil.class.getClassLoader().getResourceAsStream("files/AppVisitCount3.txt")));
+            String line = null;
+            Random random = new Random();
+
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] splits = line.split(":");
+                generatedAppVisitCountMap.put(splits[0], random.nextInt(2000) + 10000);
+            }
+
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(RESOURCE_FILE_PATH + "\\AppVisitCount3.txt"));
+            for (Map.Entry<String, Integer> entry : generatedAppVisitCountMap.entrySet()) {
+                try {
+                    bufferedWriter.write(entry.getKey()+ ":" + entry.getValue());
+                    bufferedWriter.newLine();
+                    bufferedWriter.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,7 +169,7 @@ public class FileUtil {
 
                 // 处理结果写入文件当中
                 BufferedWriter bufferedWriter = new BufferedWriter(
-                        new FileWriter(RESOURCE_FILE_PATH + "//AppVisitCount.txt"));
+                        new FileWriter(RESOURCE_FILE_PATH + "\\AppVisitCount.txt"));
                 long dealedDataCount = 0L;
                 for (Map.Entry<String, Integer> entry : appVisitCountMap.entrySet()) {
                     dealedDataCount += entry.getValue();
