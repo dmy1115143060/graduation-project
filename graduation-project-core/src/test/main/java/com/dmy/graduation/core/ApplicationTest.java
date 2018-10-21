@@ -12,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -99,12 +101,22 @@ public class ApplicationTest {
 
     @Test
     public void testPartitioner() {
-        for (int partitionNum = 30; partitionNum <= 150; partitionNum += 10) {
-            System.out.println("============================" + partitionNum + "==============================");
-            System.out.println("HashPartitioner:");
+        Map<Integer, List<Object>> hashPartitionerDataMap = new HashMap<>();
+        Map<Integer, List<Object>> rangePartitionerDataMap = new HashMap<>();
+        Map<Integer, List<Object>> dsPartitionerDataMap = new HashMap<>();
+        int minPartitionNum = 30;
+        int maxPartitionNum = 60;
+        int step = 1;
+
+        for (int partitionNum = minPartitionNum; partitionNum <= maxPartitionNum; partitionNum += step) {
+//            System.out.println("============================" + partitionNum + "==============================");
+//            System.out.println("HashPartitioner:");
             hashPartitionerMock.setPartitionNum(partitionNum);
             hashPartitionerMock.setKeyCountMap(appVisitCountMap);
-            System.out.println("不均衡度：" + hashPartitionerMock.calculateBalanceRate());
+            double inBalanceRate1 = hashPartitionerMock.calculateBalanceRate();
+            hashPartitionerDataMap.put(partitionNum, new ArrayList<>());
+            hashPartitionerDataMap.get(partitionNum).add(inBalanceRate1);
+//            System.out.println("不均衡度：" + hashPartitionerMock.calculateBalanceRate());
             int[] countArray1 = new int[3];
             countArray1[0] = Integer.MIN_VALUE;
             countArray1[1] = Integer.MAX_VALUE;
@@ -121,14 +133,19 @@ public class ApplicationTest {
                     countArray1[1] = size;
                 }
             }
-            System.out.println("极差：" + (countArray1[0] - countArray1[1]));
-            System.out.println("空闲partition数目：" + countArray1[2]);
+            hashPartitionerDataMap.get(partitionNum).add(countArray1[0] - countArray1[1]);
+            hashPartitionerDataMap.get(partitionNum).add(countArray1[2]);
+//            System.out.println("极差：" + (countArray1[0] - countArray1[1]));
+//            System.out.println("空闲partition数目：" + countArray1[2]);
 
-            System.out.println();
-            System.out.println("DSPartitioner:");
+//            System.out.println();
+//            System.out.println("DSPartitioner:");
             dsPartitionerMock.setPartitionNum(partitionNum);
             dsPartitionerMock.setKeyCountMap(appVisitCountMap);
-            System.out.println("不均衡度：" + dsPartitionerMock.calculateBalanceRate());
+            double inBalanceRate2 = dsPartitionerMock.calculateBalanceRate();
+            dsPartitionerDataMap.put(partitionNum, new ArrayList<>());
+            dsPartitionerDataMap.get(partitionNum).add(inBalanceRate2);
+//            System.out.println("不均衡度：" + dsPartitionerMock.calculateBalanceRate());
             int[] countArray2 = new int[3];
             countArray2[0] = Integer.MIN_VALUE;
             countArray2[1] = Integer.MAX_VALUE;
@@ -145,16 +162,21 @@ public class ApplicationTest {
                     countArray2[1] = size;
                 }
             }
-            System.out.println("极差：" + (countArray2[0] - countArray2[1]));
-            System.out.println("空闲partition数目：" + countArray2[2]);
+            dsPartitionerDataMap.get(partitionNum).add(countArray2[0] - countArray2[1]);
+            dsPartitionerDataMap.get(partitionNum).add(countArray2[2]);
+//            System.out.println("极差：" + (countArray2[0] - countArray2[1]));
+//            System.out.println("空闲partition数目：" + countArray2[2]);
 
-            System.out.println();
-            System.out.println("RangePartitioner:");
+//            System.out.println();
+//            System.out.println("RangePartitioner:");
             Map<Integer, List<String>> originalPartitionKeyMap = hashPartitionerMock.getPartitionKeyMap();
             rangePartitionerMock.setPartitionNum(partitionNum);
             rangePartitionerMock.setKeyCountMap(appVisitCountMap);
             rangePartitionerMock.setOriginalPartitionKeyMap(originalPartitionKeyMap);
-            System.out.println("不均衡度：" + rangePartitionerMock.calculateBalanceRate());
+            double inBalanceRate3 = rangePartitionerMock.calculateBalanceRate();
+            rangePartitionerDataMap.put(partitionNum, new ArrayList<>());
+            rangePartitionerDataMap.get(partitionNum).add(inBalanceRate3);
+//            System.out.println("不均衡度：" + rangePartitionerMock.calculateBalanceRate());
             int[] countArray3 = new int[3];
             countArray3[0] = Integer.MIN_VALUE;
             countArray3[1] = Integer.MAX_VALUE;
@@ -172,9 +194,28 @@ public class ApplicationTest {
                     countArray3[1] = size;
                 }
             }
-            System.out.println("极差：" + (countArray3[0] - countArray3[1]));
-            System.out.println("空闲partition数目：" + countArray3[2]);
-            System.out.println();
+            rangePartitionerDataMap.get(partitionNum).add(countArray3[0] - countArray3[1]);
+            rangePartitionerDataMap.get(partitionNum).add(countArray3[2]);
+//            System.out.println("极差：" + (countArray3[0] - countArray3[1]));
+//            System.out.println("空闲partition数目：" + countArray3[2]);
+//            System.out.println();
+        }
+
+        for (int i = 0; i <= 2; i++) {
+            if (i == 0) {
+                System.out.println("分区负载不均衡度：");
+            } else if (i == 1) {
+                System.out.println("分区极值：");
+            } else {
+                System.out.println("空闲分区数目：");
+            }
+            for (int partitionNum = minPartitionNum; partitionNum <= maxPartitionNum; partitionNum += step) {
+                System.out.println(partitionNum + "\t"
+                        + hashPartitionerDataMap.get(partitionNum).get(i) + "\t"
+                        + rangePartitionerDataMap.get(partitionNum).get(i) + "\t"
+                        + dsPartitionerDataMap.get(partitionNum).get(i));
+            }
+            System.out.println("\n\n");
         }
     }
 }

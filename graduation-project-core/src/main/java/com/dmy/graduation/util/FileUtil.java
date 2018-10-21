@@ -38,10 +38,6 @@ public class FileUtil {
         return appVisitCountMap;
     }
 
-    public Map<String, String> getAppSymbolMap() {
-        return appSymbolMap;
-    }
-
     /**
      * 线程池
      */
@@ -50,8 +46,10 @@ public class FileUtil {
 
     public void initAppVisitCount() {
         try {
+//            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+//                    FileUtil.class.getClassLoader().getResourceAsStream("files/AppVisitCount2.txt")));
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-                    FileUtil.class.getClassLoader().getResourceAsStream("files/AppVisitCount3.txt")));
+                    FileUtil.class.getClassLoader().getResourceAsStream("files/userVisitLogCount.txt")));
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] splits = line.split(":");
@@ -63,7 +61,7 @@ public class FileUtil {
     }
 
     /**
-     * 产生均匀的数据量
+     * 产生均匀的App访问数据量
      */
     public void generateAppVisitCount() {
         try {
@@ -80,7 +78,7 @@ public class FileUtil {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(RESOURCE_FILE_PATH + "\\AppVisitCount3.txt"));
             for (Map.Entry<String, Integer> entry : generatedAppVisitCountMap.entrySet()) {
                 try {
-                    bufferedWriter.write(entry.getKey()+ ":" + entry.getValue());
+                    bufferedWriter.write(entry.getKey() + ":" + entry.getValue());
                     bufferedWriter.newLine();
                     bufferedWriter.flush();
                 } catch (IOException e) {
@@ -95,7 +93,7 @@ public class FileUtil {
     /**
      * 从excel文件中获取App名称与其标签映射关系
      */
-    public void initAppSymbol() {
+    private void initAppSymbol() {
         try {
             Workbook workbook = WorkbookFactory.create(FileUtil.class.getClassLoader().getResourceAsStream("files/AppSymbol.xls"));
             Sheet sheet = workbook.getSheetAt(0);
@@ -115,10 +113,10 @@ public class FileUtil {
     }
 
     public void getAppVisitCount(String foldPath) {
-        initAppSymbol();
+        //initAppSymbol();
         initAppVisitCount();
-        System.out.println("appSymbolMap: " + appSymbolMap.size());
-        System.out.println("appVisitCountMap: " + appVisitCountMap.size());
+        //System.out.println("appSymbolMap: " + appSymbolMap.size());
+        //System.out.println("appVisitCountMap: " + appVisitCountMap.size());
         try {
             // 加载该目录下所有的文件
             File fold = new File(foldPath);
@@ -139,13 +137,14 @@ public class FileUtil {
                             while ((line = bufferedReader.readLine()) != null) {
                                 totalDataCount.incrementAndGet();
                                 String[] splits = line.split("\\|");
-                                String appSymbol = splits[16];
-                                String appName = appSymbolMap.get(appSymbol);
-                                hashMap.put(appName, hashMap.getOrDefault(appName, 0) + 1);
+                                //String appSymbol = splits[16];
+                                //String appName = appSymbolMap.get(appSymbol);
+                                String user = splits[1];
+                                hashMap.put(user, hashMap.getOrDefault(user, 0) + 1);
                             }
                             synchronized (appVisitCountMap) {
                                 hashMap.forEach((appName, visitCount) ->
-                                    appVisitCountMap.put(appName, appVisitCountMap.getOrDefault(appName, 0) + visitCount));
+                                        appVisitCountMap.put(appName, appVisitCountMap.getOrDefault(appName, 0) + visitCount));
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -169,7 +168,7 @@ public class FileUtil {
 
                 // 处理结果写入文件当中
                 BufferedWriter bufferedWriter = new BufferedWriter(
-                        new FileWriter(RESOURCE_FILE_PATH + "\\AppVisitCount.txt"));
+                        new FileWriter(RESOURCE_FILE_PATH + "\\userVisitLogCount.txt"));
                 long dealedDataCount = 0L;
                 for (Map.Entry<String, Integer> entry : appVisitCountMap.entrySet()) {
                     dealedDataCount += entry.getValue();
