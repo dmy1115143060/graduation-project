@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="graduation-project-core:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/graduation_project_core_jar</output-path>
+    <root id="archive" name="graduation-project-core.jar">
+      <element id="module-output" name="graduation-project-core" />
+    </root>
+  </artifact>
+</component>

@@ -4,8 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean name="fileUtil" class="com.dmy.graduation.util.FileUtil"/>
-    <bean name="hashPartitionerMock" class="com.dmy.graduation.partitioner.HashPartitionerMock"/>
-    <bean name="rangePartitionerMock" class="com.dmy.graduation.partitioner.RangePartitionerMock"/>
-    <bean name="dsPartitionerMock" class="com.dmy.graduation.partitioner.DSPartitionerMock"/>
+    <bean name="appFileUtil" class="com.dmy.graduation.util.AppFileUtil"/>
+    <bean name="tpchFileUtil" class="com.dmy.graduation.util.TPCHFileUtil"/>
+    <bean name="hashPartitionerMock" class="com.dmy.graduation.partitioner.mock.HashPartitionerMock"/>
+    <bean name="rangePartitionerMock" class="com.dmy.graduation.partitioner.mock.RangePartitionerMock"/>
+    <bean name="dsPartitionerMock" class="com.dmy.graduation.partitioner.mock.DSPartitionerMock"/>
 
 </beans>

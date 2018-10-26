@@ -1,9 +1,11 @@
 package com.dmy.graduation.core;
 
-import com.dmy.graduation.partitioner.DSPartitionerMock;
-import com.dmy.graduation.partitioner.HashPartitionerMock;
-import com.dmy.graduation.partitioner.RangePartitionerMock;
+import com.dmy.graduation.partitioner.mock.DSPartitionerMock;
+import com.dmy.graduation.partitioner.mock.HashPartitionerMock;
+import com.dmy.graduation.partitioner.mock.RangePartitionerMock;
+import com.dmy.graduation.util.AppFileUtil;
 import com.dmy.graduation.util.FileUtil;
+import com.dmy.graduation.util.TPCHFileUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +25,12 @@ import java.util.Map;
 public class ApplicationTest {
 
     @Autowired
+    private AppFileUtil appFileUtil;
+
+    @Autowired
+    private TPCHFileUtil tpchFileUtil;
+
+    @Autowired
     private FileUtil fileUtil;
 
     @Autowired
@@ -34,29 +42,29 @@ public class ApplicationTest {
     @Autowired
     private DSPartitionerMock dsPartitionerMock;
 
-    private Map<String, Integer> appVisitCountMap;
+    private Map<String, Integer> keyCountMap;
 
     @Before
     public void init() {
-        fileUtil.initAppVisitCount();
-        appVisitCountMap = fileUtil.getAppVisitCountMap();
+        fileUtil.initKeyCount("lineItemSuppKeyCount.txt");
+        keyCountMap = fileUtil.getKeyCountMap();
     }
 
     @Test
-    public void contextLoads() {
-        appVisitCountMap.forEach((key, count) -> System.out.println(key + ": " + count));
+    public void testAppFileUtil() {
+        appFileUtil.generateAppVisitCount();
     }
 
     @Test
-    public void testFileUtil() {
-        fileUtil.generateAppVisitCount();
+    public void testTPCHFileUtil() {
+        tpchFileUtil.generateKeyCount("F:\\研究内容相关资料\\experiment_data\\lineitem.tbl");
     }
 
     @Test
     public void testHashPartitioner() {
         hashPartitionerMock.setPartitionNum(200);
-        hashPartitionerMock.setKeyCountMap(appVisitCountMap);
-        System.out.println(hashPartitionerMock.calculateBalanceRate());
+        hashPartitionerMock.setKeyCountMap(keyCountMap);
+        System.out.println(hashPartitionerMock.calculateTiltRate());
         int[] countArray = new int[2];
         countArray[0] = Integer.MIN_VALUE;
         countArray[1] = Integer.MAX_VALUE;
@@ -77,14 +85,14 @@ public class ApplicationTest {
         // 先利用哈希分区来获取最初的数据分区方式
         int partitionNum = 30;
         hashPartitionerMock.setPartitionNum(partitionNum);
-        hashPartitionerMock.setKeyCountMap(appVisitCountMap);
-        hashPartitionerMock.calculateBalanceRate();
+        hashPartitionerMock.setKeyCountMap(keyCountMap);
+        hashPartitionerMock.calculateTiltRate();
 
         Map<Integer, List<String>> originalPartitionKeyMap = hashPartitionerMock.getPartitionKeyMap();
         rangePartitionerMock.setPartitionNum(partitionNum);
-        rangePartitionerMock.setKeyCountMap(appVisitCountMap);
+        rangePartitionerMock.setKeyCountMap(keyCountMap);
         rangePartitionerMock.setOriginalPartitionKeyMap(originalPartitionKeyMap);
-        System.out.println("不均衡度：" + rangePartitionerMock.calculateBalanceRate());
+        System.out.println("不均衡度：" + rangePartitionerMock.calculateTiltRate());
         rangePartitionerMock.getRePartitionSizeMap().forEach((partitionId, size) ->
                 System.out.println("partitionId: " + partitionId + " size: " + size + " "
                         + rangePartitionerMock.getRePartitionKeyMap().get(partitionId)));
@@ -93,8 +101,8 @@ public class ApplicationTest {
     @Test
     public void testDSPartitioner() {
         dsPartitionerMock.setPartitionNum(80);
-        dsPartitionerMock.setKeyCountMap(appVisitCountMap);
-        System.out.println(dsPartitionerMock.calculateBalanceRate());
+        dsPartitionerMock.setKeyCountMap(keyCountMap);
+        System.out.println(dsPartitionerMock.calculateTiltRate());
         dsPartitionerMock.getPartitionSzieMap().forEach((partitionId, count) ->
                 System.out.println(partitionId + ": " + count + " " + dsPartitionerMock.getPartitionKeyMap().get(partitionId)));
     }
@@ -112,8 +120,8 @@ public class ApplicationTest {
 //            System.out.println("============================" + partitionNum + "==============================");
 //            System.out.println("HashPartitioner:");
             hashPartitionerMock.setPartitionNum(partitionNum);
-            hashPartitionerMock.setKeyCountMap(appVisitCountMap);
-            double inBalanceRate1 = hashPartitionerMock.calculateBalanceRate();
+            hashPartitionerMock.setKeyCountMap(keyCountMap);
+            double inBalanceRate1 = hashPartitionerMock.calculateTiltRate();
             hashPartitionerDataMap.put(partitionNum, new ArrayList<>());
             hashPartitionerDataMap.get(partitionNum).add(inBalanceRate1);
 //            System.out.println("不均衡度：" + hashPartitionerMock.calculateBalanceRate());
@@ -141,8 +149,8 @@ public class ApplicationTest {
 //            System.out.println();
 //            System.out.println("DSPartitioner:");
             dsPartitionerMock.setPartitionNum(partitionNum);
-            dsPartitionerMock.setKeyCountMap(appVisitCountMap);
-            double inBalanceRate2 = dsPartitionerMock.calculateBalanceRate();
+            dsPartitionerMock.setKeyCountMap(keyCountMap);
+            double inBalanceRate2 = dsPartitionerMock.calculateTiltRate();
             dsPartitionerDataMap.put(partitionNum, new ArrayList<>());
             dsPartitionerDataMap.get(partitionNum).add(inBalanceRate2);
 //            System.out.println("不均衡度：" + dsPartitionerMock.calculateBalanceRate());
@@ -171,9 +179,9 @@ public class ApplicationTest {
 //            System.out.println("RangePartitioner:");
             Map<Integer, List<String>> originalPartitionKeyMap = hashPartitionerMock.getPartitionKeyMap();
             rangePartitionerMock.setPartitionNum(partitionNum);
-            rangePartitionerMock.setKeyCountMap(appVisitCountMap);
+            rangePartitionerMock.setKeyCountMap(keyCountMap);
             rangePartitionerMock.setOriginalPartitionKeyMap(originalPartitionKeyMap);
-            double inBalanceRate3 = rangePartitionerMock.calculateBalanceRate();
+            double inBalanceRate3 = rangePartitionerMock.calculateTiltRate();
             rangePartitionerDataMap.put(partitionNum, new ArrayList<>());
             rangePartitionerDataMap.get(partitionNum).add(inBalanceRate3);
 //            System.out.println("不均衡度：" + rangePartitionerMock.calculateBalanceRate());

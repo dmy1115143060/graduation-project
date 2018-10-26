@@ -1,4 +1,4 @@
-package com.dmy.graduation.partitioner;
+package com.dmy.graduation.partitioner.mock;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * Created by DMY on 2018/10/10 15:26
  */
-public class RangePartitionerMock {
+public class RangePartitionerMock implements PartitionerMock {
 
     /**
      * 分区个数
@@ -84,12 +84,12 @@ public class RangePartitionerMock {
     /**
      * 计算不均衡度
      */
-    public double calculateBalanceRate() {
+    public double calculateTiltRate() {
 
         assert (partitionNum > 0 && keyCountMap != null);
 
         // 计算整体采样数据规模,其中partitionNum表示子RDD中包含的partition个数
-        double sampleSize = Math.min(20.0 * partitionNum, 1e6);
+        double sampleSize = Math.min(10000.0 * partitionNum, 1e6);
 
         // 计算待采样RDD中每个partition应该采集的样本数，这里乘以3是为了后续判断一个partition中是否发生了数据倾斜
         int sampleSizePerPartition = (int) Math.ceil(3.0 * sampleSize / originalPartitionKeyMap.keySet().size());

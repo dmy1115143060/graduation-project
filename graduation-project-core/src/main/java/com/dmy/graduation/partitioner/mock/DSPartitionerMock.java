@@ -1,4 +1,4 @@
-package com.dmy.graduation.partitioner;
+package com.dmy.graduation.partitioner.mock;
 
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import java.util.*;
  * Created by DMY on 2018/10/10 15:26
  */
 @Service
-public class DSPartitionerMock {
+public class DSPartitionerMock implements PartitionerMock {
 
     /**
      * 分区个数
@@ -56,7 +56,8 @@ public class DSPartitionerMock {
         return partitionSizeMap;
     }
 
-    public double calculateBalanceRate() {
+    @Override
+    public double calculateTiltRate() {
 
         assert (partitionNum > 0 && keyCountMap != null);
 

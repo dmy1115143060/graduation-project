@@ -1,4 +1,4 @@
-package com.dmy.graduation.partitioner;
+package com.dmy.graduation.partitioner.mock;
 
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.Map;
  * Created by DMY on 2018/10/10 15:25
  */
 @Service
-public class HashPartitionerMock {
+public class HashPartitionerMock implements PartitionerMock {
 
     /**
      * 分区个数
@@ -59,7 +59,7 @@ public class HashPartitionerMock {
         return partitionSzieMap;
     }
 
-    public double calculateBalanceRate() {
+    public double calculateTiltRate() {
         assert (partitionNum > 0 && keyCountMap != null);
 
         partitionKeyMap = new HashMap<>(partitionNum);
