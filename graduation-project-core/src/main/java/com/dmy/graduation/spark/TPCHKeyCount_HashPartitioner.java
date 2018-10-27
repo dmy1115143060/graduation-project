@@ -1,7 +1,6 @@
 package com.dmy.graduation.spark;
 
 import org.apache.spark.HashPartitioner;
-import org.apache.spark.RangePartitioner;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -20,10 +19,16 @@ import java.util.Map;
 public class TPCHKeyCount_HashPartitioner {
 
     public static void main(String[] args) {
+
         if (args.length != 3) {
             System.out.println("请输入分区数、APP名称以及数据来源！");
             return;
         }
+
+        System.out.println("============================================\n\n");
+        System.out.println("开始执行程序!");
+        System.out.println("============================================\n\n");
+
         int partitionNum = Integer.parseInt(args[0]);
         String appName = args[1];
         String filePath = args[2];
@@ -54,8 +59,7 @@ public class TPCHKeyCount_HashPartitioner {
 
         Map<String, Long> keyCountMap = keyCountRDD.collectAsMap();
         try {
-            String fileName = appName + ".txt";
-            BufferedWriter writer = new BufferedWriter(new FileWriter("/home/jjin/dumingyang/result/" + fileName));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("/home/jjin/dumingyang/result/keyCount.txt"));
             for (Map.Entry<String, Long> entry : keyCountMap.entrySet()) {
                 writer.write(entry.getKey() + ":" + entry.getValue());
                 writer.newLine();
@@ -65,5 +69,9 @@ public class TPCHKeyCount_HashPartitioner {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        System.out.println("============================================\n\n");
+        System.out.println("成功执行程序!");
+        System.out.println("============================================\n\n");
     }
 }

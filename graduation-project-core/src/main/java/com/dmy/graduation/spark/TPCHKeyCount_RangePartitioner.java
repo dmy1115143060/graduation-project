@@ -7,11 +7,7 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Iterator;
-import java.util.Map;
 
 /**
  * Created by DMY on 2018/10/24 20:58
@@ -23,6 +19,11 @@ public class TPCHKeyCount_RangePartitioner {
             System.out.println("请输入分区数、APP名称以及数据来源！");
             return;
         }
+
+        System.out.println("============================================\n\n");
+        System.out.println("开始执行程序!");
+        System.out.println("============================================\n\n");
+
         int partitionNum = Integer.parseInt(args[0]);
         String appName = args[1];
         String filePath = args[2];
@@ -39,10 +40,10 @@ public class TPCHKeyCount_RangePartitioner {
             return new Tuple2<>(" ", line);
         }).filter(tuple2 -> !tuple2._1.equals(" "));
 
-        //Range 分区器
+        // Range 分区器
         RangePartitioner<String, String> rangePartitioner = new RangePartitioner<>(
                 partitionNum,
-                JavaPairRDD.toRDD(pairRDD),//待排序元 rdd
+                JavaPairRDD.toRDD(pairRDD),//待排序原RDD
                 true,//升序
                 scala.math.Ordering.String$.MODULE$,//排序类型
                 scala.reflect.ClassTag$.MODULE$.apply(String.class)); //反射
@@ -59,18 +60,9 @@ public class TPCHKeyCount_RangePartitioner {
             return new Tuple2<>(tuple2._1, count);
         });
 
-        Map<String, Long> keyCountMap = keyCountRDD.collectAsMap();
-        try {
-            String fileName = appName + ".txt";
-            BufferedWriter writer = new BufferedWriter(new FileWriter("/home/jjin/dumingyang/result/" + fileName));
-            for (Map.Entry<String, Long> entry : keyCountMap.entrySet()) {
-                writer.write(entry.getKey() + ":" + entry.getValue());
-                writer.newLine();
-                writer.flush();
-            }
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println("============================================\n\n");
+        System.out.println(keyCountRDD.count());
+        System.out.println("成功执行程序!");
+        System.out.println("============================================\n\n");
     }
 }
