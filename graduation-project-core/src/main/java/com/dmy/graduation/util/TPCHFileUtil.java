@@ -16,11 +16,11 @@ public class TPCHFileUtil extends FileUtil {
             reader = new BufferedReader(new FileReader(filePath));
             String line;
             System.out.println("============================数据处理中============================");
-            int totalCount = 0;
+            long totalCount = 0;
             while ((line = reader.readLine()) != null) {
                 String key = getLineitemKey(line);
                 if (key != null) {
-                    keyCountMap.put(key, keyCountMap.getOrDefault(key, 0) + 1);
+                    keyCountMap.put(key, keyCountMap.getOrDefault(key, 0L) + 1);
                     totalCount++;
                     if (totalCount % 100000 == 0) {
                         System.out.println("============================已成功处理【" + totalCount + "】条数据============================");
@@ -28,7 +28,7 @@ public class TPCHFileUtil extends FileUtil {
                 }
             }
             writer = new BufferedWriter(new FileWriter(RESOURCE_FILE_PATH + "\\lineItemSuppKeyCount.txt"));
-            for (Map.Entry<String, Integer> entry : keyCountMap.entrySet()) {
+            for (Map.Entry<String, Long> entry : keyCountMap.entrySet()) {
                 writer.write(entry.getKey() + ":" + entry.getValue());
                 writer.flush();
                 writer.newLine();

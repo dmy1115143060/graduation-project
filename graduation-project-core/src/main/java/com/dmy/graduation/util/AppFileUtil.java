@@ -118,7 +118,7 @@ public class AppFileUtil extends FileUtil {
                             }
                             synchronized (keyCountMap) {
                                 hashMap.forEach((appName, visitCount) ->
-                                        keyCountMap.put(appName, keyCountMap.getOrDefault(appName, 0) + visitCount));
+                                        keyCountMap.put(appName, keyCountMap.getOrDefault(appName, 0L) + visitCount));
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -144,7 +144,7 @@ public class AppFileUtil extends FileUtil {
                 BufferedWriter bufferedWriter = new BufferedWriter(
                         new FileWriter(RESOURCE_FILE_PATH + "\\userVisitLogCount.txt"));
                 long dealedDataCount = 0L;
-                for (Map.Entry<String, Integer> entry : keyCountMap.entrySet()) {
+                for (Map.Entry<String, Long> entry : keyCountMap.entrySet()) {
                     dealedDataCount += entry.getValue();
                     bufferedWriter.write(entry.getKey() + ":" + entry.getValue());
                     bufferedWriter.newLine();

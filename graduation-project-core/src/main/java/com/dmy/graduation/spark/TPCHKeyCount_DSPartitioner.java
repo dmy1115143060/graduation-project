@@ -27,7 +27,7 @@ public class TPCHKeyCount_DSPartitioner {
 
         System.out.println("============================================\n\n");
         System.out.println("开始执行程序!");
-        System.out.println("============================================\n\n");
+        System.out.println("\n\n============================================");
 
         int partitionNum = Integer.parseInt(args[0]);
         String appName = args[1];
@@ -63,7 +63,7 @@ public class TPCHKeyCount_DSPartitioner {
         System.out.println("============================================\n\n");
         System.out.println(keyCountRDD.count());
         System.out.println("成功执行程序!");
-        System.out.println("============================================\n\n");
+        System.out.println("\n\n============================================");
     }
 
     /**

@@ -1,12 +1,11 @@
 package com.dmy.graduation.partitioner.mock;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 /**
  * Created by DMY on 2018/10/10 15:26
  */
-public class RangePartitionerMock implements PartitionerMock {
+public class RangePartitionerMock extends DefaultPartitionerMockImpl {
 
     /**
      * 分区个数
@@ -21,7 +20,7 @@ public class RangePartitionerMock implements PartitionerMock {
     /**
      * key: 关键字   value: 关键字出现次数
      */
-    private Map<String, Integer> keyCountMap;
+    private Map<String, Long> keyCountMap;
 
     /**
      * key: partitionId   value: 该partition包含的key
@@ -33,7 +32,7 @@ public class RangePartitionerMock implements PartitionerMock {
      * 对数据进行重新数据分区后的结果
      */
     private Map<Integer, List<String>> rePartitionKeyMap;
-    private Map<Integer, Integer> rePartitionSizeMap;
+    private Map<Integer, Long> rePartitionSizeMap;
 
     /**
      * 二元组：<key，key的权重>
@@ -55,12 +54,6 @@ public class RangePartitionerMock implements PartitionerMock {
     public RangePartitionerMock() {
     }
 
-    public RangePartitionerMock(int partitionNum, Map<String, Integer> keyCountMap, Map<Integer, List<String>> originalPartitionKeyMap) {
-        this.partitionNum = partitionNum;
-        this.keyCountMap = keyCountMap;
-        this.originalPartitionKeyMap = originalPartitionKeyMap;
-    }
-
     public void setPartitionNum(int partitionNum) {
         this.partitionNum = partitionNum;
     }
@@ -69,7 +62,7 @@ public class RangePartitionerMock implements PartitionerMock {
         this.originalPartitionKeyMap = originalPartitionKeyMap;
     }
 
-    public void setKeyCountMap(Map<String, Integer> keyCountMap) {
+    public void setKeyCountMap(Map<String, Long> keyCountMap) {
         this.keyCountMap = keyCountMap;
     }
 
@@ -77,7 +70,7 @@ public class RangePartitionerMock implements PartitionerMock {
         return rePartitionKeyMap;
     }
 
-    public Map<Integer, Integer> getRePartitionSizeMap() {
+    public Map<Integer, Long> getRePartitionSizeMap() {
         return rePartitionSizeMap;
     }
 
@@ -85,7 +78,11 @@ public class RangePartitionerMock implements PartitionerMock {
      * 计算不均衡度
      */
     public double calculateTiltRate() {
+        partitionData();
+        return calculateTiltRate(rePartitionSizeMap, partitionNum);
+    }
 
+    private void partitionData() {
         assert (partitionNum > 0 && keyCountMap != null);
 
         // 计算整体采样数据规模,其中partitionNum表示子RDD中包含的partition个数
@@ -113,20 +110,9 @@ public class RangePartitionerMock implements PartitionerMock {
         // 对原有的数据进行重新分区并计算每个分区包含的键值对个数
         rePartitionKeyMap = rePartition(bounds);
         rePartitionSizeMap = new HashMap<>(partitionNum);
-        rePartitionKeyMap.forEach((partitionId, keyList) ->
-                keyList.forEach(key ->
-                        rePartitionSizeMap.put(partitionId, rePartitionSizeMap.getOrDefault(partitionId, 0) + keyCountMap.getOrDefault(key, 0))));
-
-        // 计算不均衡度
-        double avgPartitionCount = (double) totalCount / (double) partitionNum;
-        double totalDeviation = 0.0;
-        for (int i = 0; i < partitionNum; i++) {
-            double deviation = avgPartitionCount - rePartitionSizeMap.getOrDefault(i, 0);
-            totalDeviation += Math.pow(deviation, 2);
-        }
-        double partitionBalanceRate = Math.sqrt(totalDeviation / (double) (partitionNum - 1)) / avgPartitionCount;
-        BigDecimal bigDecimal = new BigDecimal(partitionBalanceRate);
-        return bigDecimal.setScale(5, BigDecimal.ROUND_HALF_UP).doubleValue();
+        rePartitionKeyMap.forEach(
+                (partitionId, keyList) -> keyList.forEach(
+                        key -> rePartitionSizeMap.put(partitionId, rePartitionSizeMap.getOrDefault(partitionId, 0L) + keyCountMap.getOrDefault(key, 0L))));
     }
 
     /**
@@ -145,7 +131,7 @@ public class RangePartitionerMock implements PartitionerMock {
         List<String> keyList = new ArrayList<>();
         for (String key : partitionKeys) {
             // 获取该key对应的键值对个数
-            int count = keyCountMap.getOrDefault(key, 0);
+            long count = keyCountMap.getOrDefault(key, 0L);
             partitionSize += count;
             if (count != 0) {
                 for (int i = 0; i < count; i++) {
@@ -204,7 +190,6 @@ public class RangePartitionerMock implements PartitionerMock {
      * @return 最终采样数据（二元组）
      */
     private List<Tuple> getCandidates(double fraction, int sampleSizePerPartition, List<Triple> sketched) {
-
         // 由于已经知道每个分区中的数据量和采样比例，扫描分区计算按照该采样比例采样出来的数据
         // 是否大于sampleSizePerPartition。若大于则认为该分区是倾斜的，需要按照采样比例重新进行采样
         List<Tuple> candidates = new ArrayList<>();

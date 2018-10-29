@@ -11,10 +11,10 @@ import java.util.Map;
 public class FileUtil {
 
     protected static final int INITIAL_CAPACITY = 1000;
-    protected Map<String, Integer> keyCountMap;
+    protected Map<String, Long> keyCountMap;
     protected static final String RESOURCE_FILE_PATH = "G:\\Intellij\\graduation-project\\graduation-project-core\\src\\main\\resources\\files\\";
 
-    public Map<String, Integer> getKeyCountMap() {
+    public Map<String, Long> getKeyCountMap() {
         return keyCountMap;
     }
 
@@ -25,7 +25,7 @@ public class FileUtil {
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] splits = line.split(":");
-                keyCountMap.put(splits[0], Integer.parseInt(splits[1]));
+                keyCountMap.put(splits[0], Long.getLong(splits[1]));
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -18,6 +18,7 @@ public class DSPartitioner extends Partitioner {
     public DSPartitioner(int partitionNum, Map<String, Integer> keyCountMap) {
         this.partitionNum = partitionNum;
         this.keyCountMap = keyCountMap;
+        initPartition();
     }
 
     @Override
@@ -76,5 +77,9 @@ public class DSPartitioner extends Partitioner {
             priorityQueue.add(partitionId);
             keyInPartitionMap.put(key, partitionId);
         }
+
+        System.out.println("============================================\n\n");
+        System.out.println(DSPartitioner.class.getSimpleName() + "成功完成数据预分区操作！");
+        System.out.println("\n\n============================================");
     }
 }
