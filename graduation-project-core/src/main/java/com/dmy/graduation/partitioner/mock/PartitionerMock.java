@@ -3,7 +3,7 @@ package com.dmy.graduation.partitioner.mock;
 import java.util.Map;
 
 /**
- * Created by DMY on 2018/10/11 9:26
+ * Created by DMY on 2018/10/11 1.6:26
  */
 public interface PartitionerMock {
     /**

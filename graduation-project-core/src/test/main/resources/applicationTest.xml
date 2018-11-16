@@ -6,6 +6,8 @@
     <bean name="fileUtil" class="com.dmy.graduation.util.FileUtil"/>
     <bean name="appFileUtil" class="com.dmy.graduation.util.AppFileUtil"/>
     <bean name="tpchFileUtil" class="com.dmy.graduation.util.TPCHFileUtil"/>
+    <bean name="sparkUtil" class="com.dmy.graduation.spark.SparkUtil"/>
+    <bean name="scidOptimization" class="com.dmy.graduation.shuffle.SCIDOptimization"/>
     <bean name="defaultPartitionerMock" class="com.dmy.graduation.partitioner.mock.DefaultPartitionerMockImpl"/>
     <bean name="hashPartitionerMock" class="com.dmy.graduation.partitioner.mock.HashPartitionerMock"/>
     <bean name="rangePartitionerMock" class="com.dmy.graduation.partitioner.mock.RangePartitionerMock"/>

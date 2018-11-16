@@ -1,7 +1,6 @@
 package com.dmy.graduation.core;
 
 import com.dmy.graduation.partitioner.mock.DefaultPartitionerMockImpl;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +24,29 @@ public class DefaultPartitionerMockImplTest {
     @Autowired
     private DefaultPartitionerMockImpl defaultPartitionerMock;
 
-    private Map<Integer, Long> partitionSizeMap;
+    private static final int PARTITION_NUM = 30;
 
-    private int partitionNum;
+    private static final String RESOURCE_FILE_PATH = "G:\\Intellij\\graduation-project\\graduation-project-core\\src\\main\\resources\\files\\tpch";
 
-    @Before
-    public void init() {
-        partitionNum = 30;
-        String RESOURCE_FILE_PATH = "G:\\Intellij\\graduation-project\\graduation-project-core\\src\\main\\resources\\files\\tpch\\10G\\2.0\\";
-        partitionSizeMap = new HashMap<>(partitionNum);
+    @Test
+    public void testTilt() {
+       // String[] foldNames = {"1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"};
+        String[] foldNames = {"1.0", "1.3", "1.6"};
+        String[] partitionerFileNames = {"Hash_PartitionSize.txt", "Range_PartitionSize.txt", "DS_PartitionSize.txt"};
+        for (int i = 0; i < foldNames.length; i++) {
+            System.out.println(foldNames[i]);
+            for (int j = 0; j < partitionerFileNames.length; j++) {
+                Map<Integer, Long> partitionSizeMap = getPartitionSizeMap(foldNames[i], partitionerFileNames[j]);
+                System.out.println(defaultPartitionerMock.calculateTiltRate(partitionSizeMap, PARTITION_NUM));
+            }
+            System.out.println("\n\n");
+        }
+    }
+
+    private Map<Integer, Long> getPartitionSizeMap(String foldName, String partitionerFileName) {
+        Map<Integer, Long> partitionSizeMap = new HashMap<>(PARTITION_NUM);
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(RESOURCE_FILE_PATH + "DS_PartitionSize.txt"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(RESOURCE_FILE_PATH + "\\20G\\" + foldName + "\\" + partitionerFileName));
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] splits = line.split(":");
@@ -44,10 +55,6 @@ public class DefaultPartitionerMockImplTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Test
-    public void testTilt() {
-        System.out.println(defaultPartitionerMock.calculateTiltRate(partitionSizeMap, partitionNum));
+        return partitionSizeMap;
     }
 }

@@ -4,11 +4,11 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by DMY on 2018/10/26 21:05
@@ -47,6 +47,35 @@ public class Test {
             System.out.println("=============================================");
             System.out.println(maxCountKey + ": " + maxCount);
             System.out.println(minCountKey + ": " + minCount);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @org.junit.Test
+    public void generateFile() {
+        int MAX = 8000000;
+        Random random = new Random();
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("E:\\TPCH_DATA\\KeyWord.txt"));
+            int i = 0;
+            while (i < MAX) {
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int j = 0; j < 20; j++) {
+                    if (j != 19) {
+                        stringBuilder.append("key" + "_" + random.nextInt(MAX) + " ");
+                    } else {
+                        stringBuilder.append("key" + "_" + random.nextInt(MAX));
+                    }
+                }
+                bufferedWriter.write(stringBuilder.toString());
+                bufferedWriter.newLine();
+                i++;
+                if (i % 1000 == 0) {
+                    bufferedWriter.flush();
+                }
+            }
+            bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -4,9 +4,10 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by DMY on 2018/10/9 20:45
+ * Created by DMY on 2018/10/1.6 20:45
  */
 public class NamedThreadFactory implements ThreadFactory {
+
     private static final AtomicInteger poolNumber = new AtomicInteger(1);
     private final ThreadGroup group;
     private final AtomicInteger threadNumber = new AtomicInteger(1);
