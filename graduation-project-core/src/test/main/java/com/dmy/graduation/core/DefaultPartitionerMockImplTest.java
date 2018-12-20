@@ -30,8 +30,8 @@ public class DefaultPartitionerMockImplTest {
 
     @Test
     public void testTilt() {
-       // String[] foldNames = {"1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"};
-        String[] foldNames = {"1.0", "1.3", "1.6"};
+        String[] foldNames = {"1.0", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2.0"};
+      //  String[] foldNames = {"0.1", "0.2", "0.3"};
         String[] partitionerFileNames = {"Hash_PartitionSize.txt", "Range_PartitionSize.txt", "DS_PartitionSize.txt"};
         for (int i = 0; i < foldNames.length; i++) {
             System.out.println(foldNames[i]);
@@ -46,7 +46,7 @@ public class DefaultPartitionerMockImplTest {
     private Map<Integer, Long> getPartitionSizeMap(String foldName, String partitionerFileName) {
         Map<Integer, Long> partitionSizeMap = new HashMap<>(PARTITION_NUM);
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(RESOURCE_FILE_PATH + "\\20G\\" + foldName + "\\" + partitionerFileName));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(RESOURCE_FILE_PATH + "\\10G\\" + foldName + "\\" + partitionerFileName));
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] splits = line.split(":");

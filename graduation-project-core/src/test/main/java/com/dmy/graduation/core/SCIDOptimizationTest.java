@@ -19,8 +19,8 @@ public class SCIDOptimizationTest extends BaseTest {
     public void initial() {
         int nodeNum = 10;
         int partitionNum = 30;
-        double localCostPerItem = 0.08;
-        double remoteCostPerItem = 0.15;
+        double localCostPerItem = 0.008;
+        double remoteCostPerItem = 0.015;
 
         // 初始计算节点负载
         Map<Integer, Double> initialNodeMap = new HashMap<>();
