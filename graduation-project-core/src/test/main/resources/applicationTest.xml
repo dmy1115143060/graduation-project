@@ -8,9 +8,11 @@
     <bean name="tpchFileUtil" class="com.dmy.graduation.util.TPCHFileUtil"/>
     <bean name="sparkUtil" class="com.dmy.graduation.spark.SparkUtil"/>
     <bean name="scidOptimization" class="com.dmy.graduation.shuffle.SCIDOptimization"/>
+    <bean name="sporOptimization" class="com.dmy.graduation.shuffle.SPOROptimization"/>
     <bean name="defaultPartitionerMock" class="com.dmy.graduation.partitioner.mock.DefaultPartitionerMockImpl"/>
     <bean name="hashPartitionerMock" class="com.dmy.graduation.partitioner.mock.HashPartitionerMock"/>
     <bean name="rangePartitionerMock" class="com.dmy.graduation.partitioner.mock.RangePartitionerMock"/>
     <bean name="dsPartitionerMock" class="com.dmy.graduation.partitioner.mock.DSPartitionerMock"/>
+    <bean name="zipfGenerator" class="com.dmy.graduation.util.ZipfGenerator"/>
 
 </beans>

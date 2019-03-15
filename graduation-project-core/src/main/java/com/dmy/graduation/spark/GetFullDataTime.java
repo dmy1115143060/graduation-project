@@ -39,7 +39,9 @@ public class GetFullDataTime {
                 return new Tuple2<>(splits[2], 1L);
             }
             return new Tuple2<>(" ", 1L);
-        }).filter(tuple2 -> !tuple2._1.equals(" "));
+        }).filter(tuple2 -> !tuple2._1.equals(" ")).cache();
+
+        System.out.println(pairRDD.count());
 
         long time1 = System.currentTimeMillis();
         JavaPairRDD<String, Long> keyCountRDD = pairRDD.reduceByKey((count1, count2) -> count1 + count2, partitionNum);

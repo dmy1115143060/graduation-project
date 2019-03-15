@@ -1,0 +1,1166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="graduation-project-core:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/partitioner/mock/RangePartitionerMock.java" line="165" />
+    <bookmark url="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/util/ZipfGenerator.java" line="135" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1c2750a7-cd37-474d-bb2c-0afecd23d066" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/shuffle/SPOROptimization.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SCIDOptimizationTest2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SPOROptimizationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/ZipfGeneratorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-project-core/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-project-core/src/main/java/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/shuffle/SCIDOptimization.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/shuffle/SCIDOptimization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/GetFullDataTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/GetFullDataTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/GetSampleDataTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/GetSampleDataTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/util/ZipfGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/util/ZipfGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SCIDOptimizationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SCIDOptimizationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduation-project-core/src/test/main/resources/applicationTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduation-project-core/src/test/main/resources/applicationTest.xml" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/graduation-project-core/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="SPOROptimizationTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SPOROptimizationTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1321">
+              <caret line="173" column="49" lean-forward="true" selection-start-line="173" selection-start-column="49" selection-end-line="173" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TPCHKeyCount_HashPartitioner.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/TPCHKeyCount_HashPartitioner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-540">
+              <caret line="43" column="13" lean-forward="true" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SCIDOptimizationTest2.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SCIDOptimizationTest2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="32" column="45" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DS_PartitionSize.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.1/DS_PartitionSize.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="232">
+              <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SPOROptimization.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/shuffle/SPOROptimization.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="348">
+              <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="spring-beans.schema" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>土豆</find>
+      <find>六间房</find>
+      <find>微信</find>
+      <find>普通网页浏览</find>
+      <find>DNS查询</find>
+      <find>其他</find>
+      <find>SSL</find>
+      <find>DNS</find>
+      <find>cc2al</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.4/Range_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.6/DS_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.6/Hash_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.6/Range_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.7/DS_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.7/Hash_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.7/Range_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.8/DS_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.8/Hash_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.8/Range_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.9/DS_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.9/Hash_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.9/Range_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/Test.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/WordCount.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/partitioner/PartitionTrackAccumulator.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/util/NamedThreadFactory.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/partitioner/SCIDPartitioner.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.0/Hash_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.0/Range_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.0/DS_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.3/Hash_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.3/Range_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.3/DS_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.9/Hash_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.9/Range_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.6/DS_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/TPCHKeyCount_SCIDPartitioner.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/SparkUtil.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SparkUtilTest.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.1/Hash_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.2/Hash_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.3/Hash_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.1/Range_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.2/Range_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.3/Range_PartitionSize.txt" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/DefaultPartitionerMockImplTest.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/TestSampleTime.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/GetFullDataTime.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/GetSampleDataTime.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/ZipfGeneratorTest.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/util/ZipfGenerator.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SCIDOptimizationTest.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/shuffle/SCIDOptimization.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SCIDOptimizationTest2.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/BaseTest.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SPOROptimizationTest2.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/test/main/resources/applicationTest.xml" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/shuffle/SPOROptimization.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SPOROptimizationTest.java" />
+        <option value="$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/TPCHKeyCount_HashPartitioner.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="graduation-project-core" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="graduation-project-core" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="graduation-project-core" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+          <item name="jar" type="36feed69:MavenProjectsStructure$PluginNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="graduation-project-core" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1666" />
+    <option name="y" value="66" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation" type="462c0819:PsiDirectoryNode" />
+              <item name="partitioner" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation" type="462c0819:PsiDirectoryNode" />
+              <item name="shuffle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation" type="462c0819:PsiDirectoryNode" />
+              <item name="spark" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="files" type="462c0819:PsiDirectoryNode" />
+              <item name="tpch" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="files" type="462c0819:PsiDirectoryNode" />
+              <item name="tpch" type="462c0819:PsiDirectoryNode" />
+              <item name="10G" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="files" type="462c0819:PsiDirectoryNode" />
+              <item name="tpch" type="462c0819:PsiDirectoryNode" />
+              <item name="10G" type="462c0819:PsiDirectoryNode" />
+              <item name="0.1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation-project-core" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="graduation-project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="graduation-project" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="graduation_project_core_jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="last_opened_file_path" value="C:/Program Files/Java/jdk1.8.0_72/bin/jvisualvm.exe" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\Intellij\graduation-project\graduation-project-core\src\main\resources\files\tpch\10G\0.1" />
+      <recent name="G:\Intellij\graduation-project\graduation-project-core\src\test\main" />
+      <recent name="G:\Intellij\graduation-project\graduation-project-core\src\main\resources\files" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.dmy.graduation.core" />
+      <recent name="com.dmy.graduation.spark" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Intellij\graduation-project\graduation-project-core\src\main\resources\files\tpch\10G" />
+      <recent name="G:\Intellij\graduation-project\graduation-project-core\src\main\resources\files\tpch\10G\0.1" />
+      <recent name="G:\Intellij\graduation-project\graduation-project-core\src\main\resources\files\tpch\20G" />
+      <recent name="G:\Intellij\graduation-project\graduation-project-core\src\main\resources\files\tpch\20G\1.3" />
+      <recent name="G:\Intellij\graduation-project\graduation-project-core\src\main\resources\files\tpch\10G\0.2" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.SPOROptimizationTest.test">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="BaseTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="graduation-project-core" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.dmy.graduation.core" />
+      <option name="MAIN_CLASS_NAME" value="com.dmy.graduation.core.BaseTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="SCIDOptimizationTest2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="graduation-project-core" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.dmy.graduation.core" />
+      <option name="MAIN_CLASS_NAME" value="com.dmy.graduation.core.SCIDOptimizationTest2" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="SCIDOptimizationTest2.testAllocatePartition" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="graduation-project-core" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.dmy.graduation.core" />
+      <option name="MAIN_CLASS_NAME" value="com.dmy.graduation.core.SCIDOptimizationTest2" />
+      <option name="METHOD_NAME" value="testAllocatePartition" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="SPOROptimizationTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="graduation-project-core" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.dmy.graduation.core" />
+      <option name="MAIN_CLASS_NAME" value="com.dmy.graduation.core.SPOROptimizationTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="SPOROptimizationTest.testAllocatePartition" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="graduation-project-core" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.dmy.graduation.core" />
+      <option name="MAIN_CLASS_NAME" value="com.dmy.graduation.core.SPOROptimizationTest" />
+      <option name="METHOD_NAME" value="testAllocatePartition" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="GraduationProjectCoreApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="graduation-project-core" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dmy.graduation.core.GraduationProjectCoreApplication" />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.GraduationProjectCoreApplication" />
+      <item itemvalue="JUnit.SCIDOptimizationTest2.testAllocatePartition" />
+      <item itemvalue="JUnit.SCIDOptimizationTest2" />
+      <item itemvalue="JUnit.BaseTest.test" />
+      <item itemvalue="JUnit.SPOROptimizationTest.testAllocatePartition" />
+      <item itemvalue="JUnit.SPOROptimizationTest.test" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SPOROptimizationTest.test" />
+        <item itemvalue="JUnit.SPOROptimizationTest.testAllocatePartition" />
+        <item itemvalue="JUnit.BaseTest.test" />
+        <item itemvalue="JUnit.SCIDOptimizationTest2.testAllocatePartition" />
+        <item itemvalue="JUnit.SCIDOptimizationTest2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TestHistory">
+    <history-entry file="SPOROptimizationTest_testAllocatePartition - 2019.03.12 at 10h 43m 24s.xml">
+      <configuration name="SPOROptimizationTest.testAllocatePartition" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SPOROptimizationTest_testAllocatePartition - 2019.03.12 at 10h 49m 13s.xml">
+      <configuration name="SPOROptimizationTest.testAllocatePartition" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SPOROptimizationTest_testAllocatePartition - 2019.03.12 at 14h 38m 14s.xml">
+      <configuration name="SPOROptimizationTest.testAllocatePartition" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SPOROptimizationTest_testAllocatePartition - 2019.03.12 at 15h 41m 00s.xml">
+      <configuration name="SPOROptimizationTest.testAllocatePartition" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SPOROptimizationTest_test - 2019.03.12 at 15h 48m 06s.xml">
+      <configuration name="SPOROptimizationTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SPOROptimizationTest_test - 2019.03.12 at 16h 16m 50s.xml">
+      <configuration name="SPOROptimizationTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SPOROptimizationTest_test - 2019.03.12 at 16h 17m 20s.xml">
+      <configuration name="SPOROptimizationTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SPOROptimizationTest_test - 2019.03.12 at 16h 58m 40s.xml">
+      <configuration name="SPOROptimizationTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SPOROptimizationTest_test - 2019.03.12 at 16h 59m 03s.xml">
+      <configuration name="SPOROptimizationTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SPOROptimizationTest_test - 2019.03.12 at 17h 12m 13s.xml">
+      <configuration name="SPOROptimizationTest.test" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="15" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49947917" weight="0.32837406" />
+      <window_info anchor="right" id="Palette&#9;" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.5005208" side_tool="true" weight="0.24442083" />
+      <window_info anchor="right" id="Maven Projects" order="2" visible="true" weight="0.020833334" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="4" />
+      <window_info anchor="bottom" id="Run" order="11" sideWeight="0.49947917" visible="true" weight="0.31702346" />
+      <window_info anchor="bottom" id="Spring" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="5" />
+      <window_info id="Designer" order="0" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.1578125" />
+      <window_info anchor="bottom" id="Run with VisualVM" order="2" weight="0.32943678" />
+      <window_info anchor="bottom" id="Statistic" order="0" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
+      <window_info id="Favorites" order="1" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="12" weight="0.445271" />
+      <window_info anchor="bottom" id="Debug with VisualVM" order="3" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="14" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="9" />
+      <window_info anchor="bottom" id="Cvs" order="13" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="10" weight="0.13496281" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="项目结构初始化" />
+    <MESSAGE value="数据预处理" />
+    <MESSAGE value="新增HashPartitionerMock和DSPartitionerMock" />
+    <MESSAGE value="新增RangePartitionerMock" />
+    <MESSAGE value="RangePartitionerMock修改，新增SpringBoot测试" />
+    <MESSAGE value="新增数据测试" />
+    <MESSAGE value="新增均衡数据测试AppVisitCount3.txt" />
+    <MESSAGE value="新增用户行为访问记录实验" />
+    <MESSAGE value="新增Spark分区实验代码" />
+    <MESSAGE value="Spark分区代码修改" />
+    <MESSAGE value="分区实验结果" />
+    <MESSAGE value="新增实验结果" />
+    <MESSAGE value="新增SCIDOptimization" />
+    <MESSAGE value="新增采样测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增采样测试" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="35" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="appVisitCountMap" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>appVisitCountMap</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.3/Hash_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="841">
+          <caret line="29" column="11" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.3/Range_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="841">
+          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.3/DS_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="841">
+          <caret line="29" column="11" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.6/Hash_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="841">
+          <caret line="29" column="11" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.6/DS_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/20G/1.6/Range_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/WordCount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="30" column="56" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="30" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_72/src.zip!/java/util/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="327" column="77" lean-forward="true" selection-start-line="327" selection-start-column="77" selection-end-line="327" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_72/src.zip!/java/util/AbstractMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="326" column="18" selection-start-line="326" selection-start-column="18" selection-end-line="326" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/ApplicationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-406">
+          <caret line="21" selection-start-line="21" selection-end-line="23" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SparkUtilTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="659">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-test/5.0.9.RELEASE/spring-test-5.0.9.RELEASE-sources.jar!/org/springframework/test/context/junit4/statements/RunAfterTestMethodCallbacks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="88" selection-start-line="88" selection-end-line="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-test/5.0.9.RELEASE/spring-test-5.0.9.RELEASE-sources.jar!/org/springframework/test/context/junit4/statements/RunAfterTestExecutionCallbacks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-test/5.0.9.RELEASE/spring-test-5.0.9.RELEASE-sources.jar!/org/springframework/test/context/junit4/statements/RunBeforeTestClassCallbacks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-test/5.0.9.RELEASE/spring-test-5.0.9.RELEASE-sources.jar!/org/springframework/test/context/junit4/statements/RunAfterTestClassCallbacks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/runners/ParentRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="369" selection-start-line="369" selection-end-line="369" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/runner/JUnitCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="137" selection-start-line="137" selection-end-line="137" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-test/5.0.9.RELEASE/spring-test-5.0.9.RELEASE-sources.jar!/org/springframework/test/context/junit4/SpringJUnit4ClassRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="190" selection-start-line="190" selection-end-line="190" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.2/Hash_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="695">
+          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.2/Range_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.3/Range_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="28" column="10" lean-forward="true" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.1/Range_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.3/Hash_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="10" column="10" lean-forward="true" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/TPCHKeyCount_DSPartitioner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="37" column="56" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.2/DS_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.0/Hash_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-562" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/1.0/DS_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="20" column="10" lean-forward="true" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/apache/spark/spark-core_2.11/2.3.2/spark-core_2.11-2.3.2-sources.jar!/org/apache/spark/api/java/JavaPairRDD.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="545" column="6" selection-start-line="545" selection-start-column="6" selection-end-line="545" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/TPCHKeyCount_SCIDPartitioner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/scala-lang/scala-library/2.11.12/scala-library-2.11.12-sources.jar!/scala/Tuple2.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/SparkUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.1/Hash_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="28" column="10" lean-forward="true" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/GetFullDataTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1160">
+          <caret line="45" column="48" selection-start-line="45" selection-start-column="48" selection-end-line="45" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/GetSampleDataTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1044">
+          <caret line="43" column="96" selection-start-line="43" selection-start-column="96" selection-end-line="43" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/partitioner/DSPartitioner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2175">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/DefaultPartitionerMockImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="20" column="10" lean-forward="true" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="857">
+          <caret line="80" column="9" lean-forward="true" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/util/ZipfGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1740">
+          <caret line="73" column="15" selection-start-line="73" selection-start-column="15" selection-end-line="73" selection-end-column="15" />
+          <folding>
+            <element signature="e#1068#1069#0" expanded="true" />
+            <element signature="e#1095#1096#0" expanded="true" />
+            <element signature="e#1126#1127#0" expanded="true" />
+            <element signature="e#1153#1154#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/BaseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1135">
+          <caret line="68" column="5" lean-forward="true" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/ZipfGeneratorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="694">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SCIDOptimizationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/shuffle/SCIDOptimization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="131" column="9" lean-forward="true" selection-start-line="89" selection-start-column="7" selection-end-line="131" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/test/main/resources/applicationTest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/shuffle/SPOROptimization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_72/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="458" column="32" lean-forward="true" selection-start-line="458" selection-start-column="32" selection-end-line="458" selection-end-column="32" />
+          <folding>
+            <element signature="e#10189#10190#0" expanded="true" />
+            <element signature="e#10216#10217#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_72/src.zip!/java/util/List.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="120" column="8" selection-start-line="120" selection-start-column="8" selection-end-line="120" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/resources/files/tpch/10G/0.1/DS_PartitionSize.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SPOROptimizationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1321">
+          <caret line="173" column="49" lean-forward="true" selection-start-line="173" selection-start-column="49" selection-end-line="173" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/main/java/com/dmy/graduation/spark/TPCHKeyCount_HashPartitioner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-540">
+          <caret line="43" column="13" lean-forward="true" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graduation-project-core/src/test/main/java/com/dmy/graduation/core/SCIDOptimizationTest2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="32" column="45" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>graduation-project-core:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring (graduation-project-core)|Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>hbase_jars</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>graduation-project</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: ch.qos.logback:logback-classic:1.2.3</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

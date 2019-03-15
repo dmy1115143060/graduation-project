@@ -34,7 +34,8 @@ public class GetSampleDataTime {
         SparkConf sc = new SparkConf();
         sc.setAppName(appName);
         JavaSparkContext jsc = new JavaSparkContext(sc);
-        JavaRDD<String> inputRDD = jsc.textFile(filePath);
+        JavaRDD<String> inputRDD = jsc.textFile(filePath).cache();
+        System.out.println(inputRDD.count());
 
         long time1 = System.currentTimeMillis();
         int sampleSizePerPartition = sampleSize / inputRDD.partitions().size();
@@ -80,6 +81,7 @@ public class GetSampleDataTime {
         }
         long time2 = System.currentTimeMillis();
         System.out.println("============================================\n\n");
+        System.out.println("totalSize: " + totalSize);
         System.out.println("成功获取数据信息，获取数据时间为：" + (time2 - time1) / 1000 + "s");
         System.out.println("============================================\n\n");
     }

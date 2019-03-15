@@ -181,7 +181,7 @@ public class SCIDOptimization {
         Map<Integer, Integer> finalPartitionPlacement = new HashMap<>(initialPartitionPlacement);
 
         // 记录各计算节点对应负载。 (nodeId, 负载)
-        Map<Integer, Double> nodeLoad = new HashMap<>();
+        Map<Integer, Double> nodeLoadMap = new HashMap<>(initialLoadMap);
 
         // 记录Partition放置在不同计算节点上所带来的开销。(partitionId, (nodeId, 开销))
         Map<Integer, Map<Integer, Double>> partitionLoadOnNode = new HashMap<>();
@@ -221,35 +221,30 @@ public class SCIDOptimization {
         }
 
         // 计算初始Partition分配情况下各计算节点的负载
-        for (int nodeId = 0; nodeId < nodeNum; nodeId++) {
-            if (nodeLoad.containsKey(nodeId)) {
-                nodeLoad.put(nodeId, initialLoadMap.getOrDefault(nodeId, 0d));
-            }
-        }
         initialPartitionPlacement.forEach((partitionId, nodeId) -> {
             double load = partitionLoadOnNode.get(partitionId).getOrDefault(nodeId, 0d);
-            nodeLoad.put(nodeId, nodeLoad.getOrDefault(nodeId, 0d) + load);
+            nodeLoadMap.put(nodeId, nodeLoadMap.getOrDefault(nodeId, 0d) + load);
         });
 
         // 对计算节点按照负载值大小构造大顶堆
         PriorityQueue<Integer> nodeLoadHeap = new PriorityQueue<>((nodeId1, nodeId2) -> {
-            double load1 = nodeLoad.getOrDefault(nodeId1, 0d);
-            double load2 = nodeLoad.getOrDefault(nodeId2, 0d);
+            double load1 = nodeLoadMap.getOrDefault(nodeId1, 0d);
+            double load2 = nodeLoadMap.getOrDefault(nodeId2, 0d);
             return Double.compare(load2, load1);
         });
         for (int nodeId = 0; nodeId < nodeNum; nodeId++) {
             nodeLoadHeap.add(nodeId);
         }
 
-        System.out.println("初始Partition分配：" + partitionAllocatedByLocality);
-        System.out.println("         机器负载：" + nodeLoad);
-        System.out.println("        makeSpan：" + nodeLoad.get(nodeLoadHeap.peek()));
+        System.out.println("初始Partition分配: " + partitionAllocatedByLocality);
+        System.out.println("      初始机器负载: " + nodeLoadMap);
+        System.out.println("初始makeSpan: " + nodeLoadMap.get(nodeLoadHeap.peek()));
         System.out.println("\n\n");
         int index = 1;
         while (true) {
             // 每次对分配在堆顶计算节点中的Partition集合按照带来的负载进行降序排序
             int maxLoadNodeId = nodeLoadHeap.poll();
-            double makeSpan = nodeLoad.get(maxLoadNodeId);
+            double makeSpan = nodeLoadMap.get(maxLoadNodeId);
             List<Integer> partitionList = partitionAllocatedByLocality.get(maxLoadNodeId);
             if (partitionList == null || partitionList.isEmpty()) {
                 break;
@@ -268,7 +263,7 @@ public class SCIDOptimization {
             double minLoad = makeSpan;
             for (int nodeId = 0; nodeId < nodeNum; nodeId++) {
                 if (nodeId != maxLoadNodeId) {
-                    double load = nodeLoad.getOrDefault(nodeId, 0d) + partitionLoadOnNode.get(maxLoadPartitionId).getOrDefault(nodeId, 0d);
+                    double load = nodeLoadMap.getOrDefault(nodeId, 0d) + partitionLoadOnNode.get(maxLoadPartitionId).getOrDefault(nodeId, 0d);
                     if (Double.compare(minLoad, load) > 0) {
                         minLoad = load;
                         allocatedNodeId = nodeId;
@@ -279,13 +274,13 @@ public class SCIDOptimization {
                 System.out.println("==================================Step" + index + "==================================");
                 System.out.println("BeforeAllocation_NodeContainsPartition: " + "node_" + maxLoadNodeId + " = "
                         + partitionAllocatedByLocality.get(maxLoadNodeId)
-                        +  " node_" + allocatedNodeId + " = " + partitionAllocatedByLocality.get(allocatedNodeId));
-                System.out.println("BeforeAllocation_NodeLoad：" + "node_" + maxLoadNodeId + " = " + nodeLoad.getOrDefault(maxLoadNodeId, 0d)
-                        + " node_" + allocatedNodeId + " = " + nodeLoad.getOrDefault(allocatedNodeId, 0d));
+                        + " node_" + allocatedNodeId + " = " + partitionAllocatedByLocality.get(allocatedNodeId));
+                System.out.println("BeforeAllocation_NodeLoad：" + "node_" + maxLoadNodeId + " = " + nodeLoadMap.getOrDefault(maxLoadNodeId, 0d)
+                        + " node_" + allocatedNodeId + " = " + nodeLoadMap.getOrDefault(allocatedNodeId, 0d));
 
                 // 将Partition带来的负载从最大负载的节点中移除
                 partitionAllocatedByLocality.get(maxLoadNodeId).remove(maxLoadPartitionId);
-                nodeLoad.put(maxLoadNodeId, nodeLoad.getOrDefault(maxLoadNodeId, 0d) - partitionLoadOnNode.get(maxLoadPartitionId).getOrDefault(maxLoadNodeId, 0d));
+                nodeLoadMap.put(maxLoadNodeId, nodeLoadMap.getOrDefault(maxLoadNodeId, 0d) - partitionLoadOnNode.get(maxLoadPartitionId).getOrDefault(maxLoadNodeId, 0d));
 
                 // 将Partition重新分配并更新负载
                 if (!partitionAllocatedByLocality.containsKey(allocatedNodeId)) {
@@ -293,7 +288,7 @@ public class SCIDOptimization {
                 }
                 partitionAllocatedByLocality.get(allocatedNodeId).add(maxLoadPartitionId);
                 finalPartitionPlacement.put(maxLoadPartitionId, allocatedNodeId);
-                nodeLoad.put(allocatedNodeId, nodeLoad.getOrDefault(allocatedNodeId, 0d) + partitionLoadOnNode.get(maxLoadPartitionId).getOrDefault(allocatedNodeId, 0d));
+                nodeLoadMap.put(allocatedNodeId, nodeLoadMap.getOrDefault(allocatedNodeId, 0d) + partitionLoadOnNode.get(maxLoadPartitionId).getOrDefault(allocatedNodeId, 0d));
             } else {
                 break;
             }
@@ -307,12 +302,15 @@ public class SCIDOptimization {
             System.out.println("AfterAllocation_NodeContainsPartition: " + maxLoadNodeId + " = "
                     + partitionAllocatedByLocality.get(maxLoadNodeId)
                     + " " + allocatedNodeId + " = " + partitionAllocatedByLocality.get(allocatedNodeId));
-            System.out.println("AfterAllocation_NodeLoad：" + maxLoadNodeId + " = " + nodeLoad.getOrDefault(maxLoadNodeId, 0d)
-                    + " " + allocatedNodeId + " = " + nodeLoad.getOrDefault(allocatedNodeId, 0d));
-            System.out.println("AfterAllocation_MakeSpan：" + "makeSpan = " + makeSpan + " -> " + nodeLoad.getOrDefault(nodeLoadHeap.peek(), 0d));
+            System.out.println("AfterAllocation_NodeLoad：" + maxLoadNodeId + " = " + nodeLoadMap.getOrDefault(maxLoadNodeId, 0d)
+                    + " " + allocatedNodeId + " = " + nodeLoadMap.getOrDefault(allocatedNodeId, 0d));
+            System.out.println("AfterAllocation_MakeSpan：" + "makeSpan = " + makeSpan + " -> " + nodeLoadMap.getOrDefault(nodeLoadHeap.peek(), 0d));
+            System.out.println("节点负载: " + nodeLoadMap);
+            System.out.println("Partition分配: " + partitionAllocatedByLocality);
             System.out.println("\n\n");
             index++;
         }
+        System.out.println("优化后makeSpan：" + nodeLoadMap.get(nodeLoadHeap.peek()));
         return finalPartitionPlacement;
     }
 }

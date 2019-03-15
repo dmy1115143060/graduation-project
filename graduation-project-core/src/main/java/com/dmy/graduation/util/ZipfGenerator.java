@@ -31,24 +31,37 @@ public class ZipfGenerator implements Serializable {
 
     private double skew;
 
-    public ZipfGenerator(int size, double skew) {
-        // create the TreeMap
-        this.size = size;
-        this.skew = skew;
-        map = computeMap();
+    public ZipfGenerator() {
+
     }
 
-    //size为rank个数，skew为数据倾斜程度
+    public void setSkew(double skew) {
+        this.skew = skew;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public double getSkew() {
+        return skew;
+    }
+
+    // size为rank个数，skew为数据倾斜程度
     private NavigableMap<Double, Integer> computeMap() {
         NavigableMap<Double, Integer> map = new TreeMap<>();
-        //总频率
+        // 总频率
         double div = 0;
-        //对每个rank，计算对应的词频，计算总词频
+        // 对每个rank，计算对应的词频，计算总词频
         for (int i = 1; i <= size; i++) {
             //the frequency in position i
             div += (Constant / Math.pow(i, skew));
         }
-        //计算每个rank对应的y值，所以靠前rank的y值区间远比后面rank的y值区间大
+        // 计算每个rank对应的y值，所以靠前rank的y值区间远比后面rank的y值区间大
         double sum = 0;
         for (int i = 1; i <= size; i++) {
             double p = (Constant / Math.pow(i, skew)) / div;
@@ -58,9 +71,12 @@ public class ZipfGenerator implements Serializable {
         return map;
     }
 
-    private int next() {         // [1,n]
+    public int next() {         // [1,n]
+        if (map == null) {
+            map = computeMap();
+        }
         double value = random.nextDouble();
-        //找最近y值对应的rank
+        // 找最近y值对应的rank
         return map.ceilingEntry(value).getValue() + 1;
     }
 
@@ -122,7 +138,7 @@ public class ZipfGenerator implements Serializable {
     }
 
     public static void main(String[] args) {
-        ZipfGenerator zipfGenerator = new ZipfGenerator(SIZE, 0.0);
-        zipfGenerator.generateData("10_0.0", "F:\\研究内容相关资料\\毕设相关\\experiment_data\\");
+//        ZipfGenerator zipfGenerator = new ZipfGenerator(SIZE, 0.0);
+//        zipfGenerator.generateData("10_0.0", "F:\\研究内容相关资料\\毕设相关\\experiment_data\\");
     }
 }
